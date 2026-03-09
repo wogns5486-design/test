@@ -75,6 +75,74 @@ main {
     color: var(--sub-text-color);
 }
 
+#contact-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#contact-section h2 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+#submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+#submit-btn:hover {
+    opacity: 0.9;
+}
+
 footer {
     background-color: var(--header-bg);
     padding: 20px;
