@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Intelligence Dashboard</title>
-    <link rel="stylesheet" href="style.css?v=1.3">
+    <link rel="stylesheet" href="style.css?v=1.4">
 </head>
 <body>
+    <div id="news-ticker">
+        <div class="ticker-content" id="ticker-content">
+            Loading latest crypto headlines...
+        </div>
+    </div>
+
     <header>
         <h1 id="site-title">Crypto Intelligence</h1>
         <div class="header-controls">
+            <button id="currency-toggle">USD / KRW</button>
             <button id="lang-toggle">한국어</button>
-            <button id="theme-toggle">Dark Mode</button>
+            <button id="theme-toggle">Dark</button>
         </div>
     </header>
 
@@ -26,13 +33,13 @@
         </div>
     </section>
 
-    <section id="exchange-section">
-        <h2 id="exchange-title">Global Exchanges</h2>
-        <div class="exchange-links">
-            <a href="https://www.binance.com" target="_blank" class="exchange-card">Binance</a>
-            <a href="https://www.upbit.com" target="_blank" class="exchange-card">Upbit</a>
-            <a href="https://www.bithumb.com" target="_blank" class="exchange-card">Bithumb</a>
-            <a href="https://www.coinbase.com" target="_blank" class="exchange-card">Coinbase</a>
+    <section id="category-filter">
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-category="all" id="btn-all">All</button>
+            <button class="filter-btn" data-category="layer-1" id="btn-l1">Layer 1</button>
+            <button class="filter-btn" data-category="ai" id="btn-ai">AI</button>
+            <button class="filter-btn" data-category="meme" id="btn-meme">Meme</button>
+            <button class="filter-btn" data-category="stablecoin" id="btn-stable">Stable</button>
         </div>
     </section>
 
@@ -41,6 +48,7 @@
             <span class="h-rank">#</span>
             <span class="h-name" id="h-name">Name</span>
             <span class="h-desc" id="h-desc">Summary</span>
+            <span class="h-trend" id="h-trend">7D Trend</span>
             <span class="h-price" id="h-price">Price (24h)</span>
         </div>
         <div id="crypto-container">
@@ -82,6 +90,6 @@
     <footer>
         <p id="footer-text">&copy; 2024 Crypto Intelligence Platform</p>
     </footer>
-    <script src="main.js?v=1.3"></script>
+    <script src="main.js?v=1.4"></script>
 </body>
 </html>
