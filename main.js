@@ -156,6 +156,7 @@ async function fetchCryptos() {
 
 // Initial update
 updateLanguage();
-fetchCryptos();
+// Removed second fetchCryptos() call as it is called inside updateLanguage()
+
 // Refresh every 60 seconds
 setInterval(fetchCryptos, 60000);
