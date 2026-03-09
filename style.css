@@ -143,6 +143,16 @@ main {
     opacity: 0.9;
 }
 
+#comments-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
 footer {
     background-color: var(--header-bg);
     padding: 20px;
