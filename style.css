@@ -39,10 +39,44 @@ header {
     padding: 10px 40px;
 }
 
+.header-controls {
+    display: flex;
+    gap: 10px;
+}
+
 h1 {
     margin: 0;
     font-size: 2em;
     color: var(--accent-color);
+}
+
+#exchange-section {
+    padding: 20px 40px;
+    text-align: center;
+}
+
+.exchange-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.exchange-card {
+    text-decoration: none;
+    color: white;
+    background-color: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.exchange-card:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
 main {
@@ -51,7 +85,7 @@ main {
 
 #crypto-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
 }
 
@@ -154,7 +188,7 @@ main {
 }
 
 #disqus_thread {
-    min-height: 300px; /* Ensure space is reserved for loading */
+    min-height: 300px;
 }
 
 footer {
@@ -165,7 +199,7 @@ footer {
     margin-top: 20px;
 }
 
-#theme-toggle {
+#theme-toggle, #lang-toggle {
     padding: 8px 16px;
     cursor: pointer;
     background-color: var(--accent-color);

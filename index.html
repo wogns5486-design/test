@@ -8,25 +8,41 @@
 </head>
 <body>
     <header>
-        <h1>Crypto Recommendations</h1>
-        <button id="theme-toggle">Dark Mode</button>
+        <h1 id="site-title">Crypto Recommendations</h1>
+        <div class="header-controls">
+            <button id="lang-toggle">한국어</button>
+            <button id="theme-toggle">Dark Mode</button>
+        </div>
     </header>
+
+    <section id="exchange-section">
+        <h2 id="exchange-title">Popular Exchanges</h2>
+        <div class="exchange-links">
+            <a href="https://www.binance.com" target="_blank" class="exchange-card">Binance</a>
+            <a href="https://www.coinbase.com" target="_blank" class="exchange-card">Coinbase</a>
+            <a href="https://www.upbit.com" target="_blank" class="exchange-card">Upbit</a>
+            <a href="https://www.bithumb.com" target="_blank" class="exchange-card">Bithumb</a>
+            <a href="https://www.kraken.com" target="_blank" class="exchange-card">Kraken</a>
+        </div>
+    </section>
+
     <main id="crypto-container">
         <!-- Crypto recommendations will be dynamically inserted here -->
     </main>
+
     <section id="contact-section">
-        <h2>Partner with Us</h2>
+        <h2 id="contact-title">Partner with Us</h2>
         <form action="https://formspree.io/f/xvzwzwrj" method="POST">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name" id="label-name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" id="label-email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Your Email" required>
             </div>
             <div class="form-group">
-                <label for="message">Message</label>
+                <label for="message" id="label-message">Message</label>
                 <textarea id="message" name="message" placeholder="How can we partner together?" required></textarea>
             </div>
             <button type="submit" id="submit-btn">Send Inquiry</button>
@@ -34,19 +50,10 @@
     </section>
 
     <section id="comments-section">
-        <h2>Comments</h2>
+        <h2 id="comments-title">Comments</h2>
         <div id="disqus_thread"></div>
         <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
+            (function() { 
             var d = document, s = d.createElement('script');
             s.src = 'https://test1-8p7a9dlhgh.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
@@ -56,7 +63,7 @@
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </section>
     <footer>
-        <p>&copy; 2024 Crypto Recommendations</p>
+        <p id="footer-text">&copy; 2024 Crypto Recommendations</p>
     </footer>
     <script src="main.js"></script>
 </body>
