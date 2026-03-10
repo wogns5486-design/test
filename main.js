@@ -43,6 +43,13 @@ const translations = {
         portfolioAdd: "Add",
         portfolioTotal: "Total Value",
         portfolioEmpty: "No holdings yet. Add a coin above.",
+        news: [
+            "Bitcoin ETFs see record inflows as institutions accumulate.",
+            "Solana ecosystem grows with new liquid staking protocols.",
+            "AI-themed tokens surge amid NVIDIA's quarterly earnings.",
+            "Ethereum's Dencun upgrade successfully reduces L2 fees.",
+            "Crypto market cap surpasses $3 trillion amid bull run.",
+        ]
     },
     ko: {
         siteTitle: "크립토 인텔리전스",
@@ -73,6 +80,13 @@ const translations = {
         portfolioAdd: "추가",
         portfolioTotal: "총 자산",
         portfolioEmpty: "보유 코인이 없습니다. 위에서 추가하세요.",
+        news: [
+            "비트코인 현물 ETF, 기관들의 대규모 매수세 유입 지속.",
+            "솔라나 생태계, 신규 유동성 스테이킹 프로토콜로 성장세.",
+            "엔비디아 실적 발표 후 AI 관련 가상자산 동반 급등.",
+            "이더리움 덴쿤 업그레이드로 레이어2 수수료 대폭 절감.",
+            "가상자산 시가총액 3조 달러 돌파, 상승장 지속.",
+        ]
     }
 };
 
