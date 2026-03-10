@@ -881,7 +881,8 @@ async function fetchAIReport() {
     const dateEl = document.getElementById('report-date');
     
     try {
-        const res = await fetch('/api/report');
+        // 현재 언어 정보를 파라미터로 전달
+        const res = await fetch(`/api/report?lang=${currentLang}`);
         const data = await res.json();
         
         if (data.error) throw new Error(data.error);
@@ -900,7 +901,7 @@ async function fetchAIReport() {
         contentEl.innerHTML = html;
         contentEl.classList.remove('loading-report');
     } catch (err) {
-        contentEl.innerHTML = `<p style="color:var(--down)">리포트를 불러오는 중 오류가 발생했습니다: ${err.message}</p>`;
+        contentEl.innerHTML = `<p style="color:var(--down)">${currentLang === 'ko' ? '리포트를 불러오는 중 오류가 발생했습니다' : 'Error loading report'}: ${err.message}</p>`;
     }
 }
 
