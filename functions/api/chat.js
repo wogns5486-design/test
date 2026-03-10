@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
         const { message, marketContext } = await request.json();
 
         if (!env.GEMINI_API_KEY) {
-            return new Response(JSON.stringify({ error: "Gemini API Key가 Cloudflare 설정에 없습니다. Settings -> Variables에서 등록했는지 확인해주세요." }), {
+            return new Response(JSON.stringify({ error: "Gemini API Key가 Cloudflare 설정에 없습니다." }), {
                 status: 500,
                 headers: { "Content-Type": "application/json" }
             });
@@ -21,8 +21,9 @@ ${message}
 
 전문적이면서도 이해하기 쉽게 한국어로 답변해 주세요. (마크다운 형식 사용 가능)`;
 
+        // v1 정식 버전 사용 및 모델명 수정
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -35,7 +36,6 @@ ${message}
 
         const data = await response.json();
 
-        // Gemini API 에러가 있는 경우
         if (data.error) {
             return new Response(JSON.stringify({ error: `Gemini API 오류: ${data.error.message}` }), {
                 status: 500,
@@ -46,7 +46,7 @@ ${message}
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
         
         if (!reply) {
-            return new Response(JSON.stringify({ error: "Gemini가 빈 응답을 보냈습니다. (Safety Filter에 걸렸을 수 있습니다.)", raw: data }), {
+            return new Response(JSON.stringify({ error: "Gemini가 빈 응답을 보냈습니다. (Safety Filter 등)" }), {
                 status: 500,
                 headers: { "Content-Type": "application/json" }
             });
