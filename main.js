@@ -24,7 +24,6 @@ const translations = {
         labelEmail: "Email",
         labelMessage: "Message",
         submitBtn: "Send",
-        commentsTitle: "Community Discussion",
         footerText: "© 2024 Crypto Intelligence Platform",
         sentimentLabel: "Market Sentiment",
         searchPlaceholder: "Search coins (e.g. BTC, ETH)",
@@ -55,7 +54,6 @@ const translations = {
         labelEmail: "이메일",
         labelMessage: "내용",
         submitBtn: "보내기",
-        commentsTitle: "커뮤니티 토론",
         footerText: "© 2024 크립토 인텔리전스 플랫폼",
         sentimentLabel: "시장 심리 지수",
         searchPlaceholder: "코인 검색 (예: BTC, ETH)",
@@ -606,7 +604,6 @@ function updateLanguage() {
     document.getElementById('label-email').textContent = t.labelEmail;
     document.getElementById('label-message').textContent = t.labelMessage;
     document.getElementById('submit-btn').textContent = t.submitBtn;
-    document.getElementById('comments-title').textContent = t.commentsTitle;
     document.getElementById('footer-text').textContent = t.footerText;
     document.getElementById('sentiment-label').textContent = t.sentimentLabel;
     document.getElementById('crypto-search').placeholder = t.searchPlaceholder;
