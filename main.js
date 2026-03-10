@@ -359,7 +359,8 @@ function renderCryptos(data) {
         const changeClass = change >= 0 ? 'up' : 'down';
         const changeSymbol = change >= 0 ? '▲' : '▼';
         
-        const summary = coinSummaries[currentLang][crypto.id] || 
+        if (!coinSummaries[currentLang][crypto.id]) console.log('Missing summary:', crypto.id, crypto.name);
+        const summary = coinSummaries[currentLang][crypto.id] ||
                         (currentLang === 'en' ? "Leading project in its sector with significant market adoption." : "해당 분야에서 높은 시장 점유율을 보유한 주요 프로젝트입니다.");
 
         const currencySymbol = currentCurrency === 'usd' ? '$' : '₩';
