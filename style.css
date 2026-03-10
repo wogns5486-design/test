@@ -468,6 +468,8 @@ main {
 #submit-btn:hover { opacity: 0.85; }
 
 footer { padding: 32px; text-align: center; color: var(--sub-text-color); font-size: 0.8rem; }
+footer a { color: var(--sub-text-color); text-decoration: none; }
+footer a:hover { color: var(--accent-color); }
 
 /* ── Chart Modal ── */
 #chart-modal {
