@@ -850,12 +850,18 @@ async function sendChatMessage(message) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message, marketContext: buildMarketContext() }),
         });
+        
         const data = await res.json();
         removeTyping();
-        appendMessage('ai', data.reply || '응답을 받지 못했습니다.');
-    } catch {
+
+        if (!res.ok) {
+            appendMessage('ai', `⚠️ 오류: ${data.error || '응답을 가져올 수 없습니다.'}`);
+        } else {
+            appendMessage('ai', data.reply || '응답을 생성하는 중 오류가 발생했습니다.');
+        }
+    } catch (err) {
         removeTyping();
-        appendMessage('ai', '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        appendMessage('ai', `🚫 연결 오류: 서버에 접속할 수 없습니다. (배포 상태를 확인해주세요.)`);
     } finally {
         chatSendBtn.disabled = false;
         chatInput.focus();

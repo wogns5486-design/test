@@ -1,27 +1,24 @@
-name: 📊 Daily Crypto Report
+name: Daily Market Report Agent
 
 on:
   schedule:
-    # 매일 오전 7시 KST = 22:00 UTC (전날)
+    # 매일 아침 7시 (KST) = UTC 22:00
     - cron: '0 22 * * *'
-  # 수동 테스트용 (GitHub Actions 탭에서 바로 실행 가능)
-  workflow_dispatch:
+  workflow_dispatch: # 버튼을 눌러 즉시 실행 가능
 
 jobs:
-  send-report:
+  report:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
 
-      - name: Run Daily Report Agent
+      - name: Run Report Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

@@ -1,87 +1,48 @@
-/**
- * Cloudflare Pages Function — /api/chat
- * Proxies requests to Gemini API (keeps API key secret)
- */
-
-const SYSTEM_PROMPT = `You are an expert cryptocurrency market analyst AI assistant embedded in a real-time crypto dashboard called "Crypto Intelligence."
-
-Your role:
-- Answer questions about cryptocurrency markets, coins, investment strategies, and market conditions
-- Analyze the real-time market data provided with each question
-- Give actionable, concise insights based on current data
-- Support BOTH English and Korean — always respond in the SAME language the user asked in
-- Be honest about uncertainty; markets are unpredictable
-- Keep responses focused and to the point (3-5 sentences max unless detailed analysis is requested)
-
-Always end responses with a brief disclaimer: "(참고용 정보이며 투자 조언이 아닙니다)" in Korean questions, or "(For informational purposes only, not financial advice)" in English questions.
-
-Tone: Professional but approachable, like a knowledgeable friend who understands crypto.`;
-
 export async function onRequestPost(context) {
     const { request, env } = context;
-
-    // CORS headers
-    const corsHeaders = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json',
-    };
 
     try {
         const { message, marketContext } = await request.json();
 
-        if (!message) {
-            return new Response(JSON.stringify({ error: 'No message provided' }), { status: 400, headers: corsHeaders });
+        if (!env.GEMINI_API_KEY) {
+            return new Response(JSON.stringify({ error: "Gemini API Key가 설정되지 않았습니다." }), {
+                status: 500,
+                headers: { "Content-Type": "application/json" }
+            });
         }
 
-        const prompt = `${SYSTEM_PROMPT}
+        const prompt = `당신은 암호화폐 시장 전문가입니다. 아래 실시간 시장 데이터를 바탕으로 사용자의 질문에 친절하고 전문적으로 답변하세요.
 
---- CURRENT MARKET DATA (real-time) ---
+[현재 시장 데이터]
 ${marketContext}
---- END MARKET DATA ---
 
-User question: ${message}`;
+[사용자 질문]
+${message}
 
-        const geminiRes = await fetch(
+전문적이면서도 이해하기 쉽게 한국어로 답변해 주세요. (마크다운 형식 사용 가능)`;
+
+        const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
             {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 512,
-                    },
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1000 },
                 }),
             }
         );
 
-        if (!geminiRes.ok) {
-            const err = await geminiRes.text();
-            console.error('Gemini error:', err);
-            return new Response(JSON.stringify({ error: 'AI service error' }), { status: 502, headers: corsHeaders });
-        }
+        const data = await response.json();
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "응답을 생성하는 중 오류가 발생했습니다.";
 
-        const data = await geminiRes.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '응답을 생성할 수 없습니다.';
-
-        return new Response(JSON.stringify({ reply }), { headers: corsHeaders });
-
+        return new Response(JSON.stringify({ reply }), {
+            headers: { "Content-Type": "application/json" }
+        });
     } catch (err) {
-        console.error(err);
-        return new Response(JSON.stringify({ error: 'Internal error' }), { status: 500, headers: corsHeaders });
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" }
+        });
     }
-}
-
-// CORS preflight
-export async function onRequestOptions() {
-    return new Response(null, {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type',
-        },
-    });
 }
