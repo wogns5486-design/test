@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
         const { message, marketContext } = await request.json();
 
         if (!env.GEMINI_API_KEY) {
-            return new Response(JSON.stringify({ error: "Gemini API Key가 설정되지 않았습니다." }), {
+            return new Response(JSON.stringify({ error: "Gemini API Key가 Cloudflare 설정에 없습니다. Settings -> Variables에서 등록했는지 확인해주세요." }), {
                 status: 500,
                 headers: { "Content-Type": "application/json" }
             });
@@ -34,13 +34,29 @@ ${message}
         );
 
         const data = await response.json();
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "응답을 생성하는 중 오류가 발생했습니다.";
+
+        // Gemini API 에러가 있는 경우
+        if (data.error) {
+            return new Response(JSON.stringify({ error: `Gemini API 오류: ${data.error.message}` }), {
+                status: 500,
+                headers: { "Content-Type": "application/json" }
+            });
+        }
+
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        if (!reply) {
+            return new Response(JSON.stringify({ error: "Gemini가 빈 응답을 보냈습니다. (Safety Filter에 걸렸을 수 있습니다.)", raw: data }), {
+                status: 500,
+                headers: { "Content-Type": "application/json" }
+            });
+        }
 
         return new Response(JSON.stringify({ reply }), {
             headers: { "Content-Type": "application/json" }
         });
     } catch (err) {
-        return new Response(JSON.stringify({ error: err.message }), {
+        return new Response(JSON.stringify({ error: `서버 내부 오류: ${err.message}` }), {
             status: 500,
             headers: { "Content-Type": "application/json" }
         });
