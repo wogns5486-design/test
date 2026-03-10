@@ -15,7 +15,7 @@
         .about-wrap { max-width: 860px; margin: 48px auto; padding: 0 40px 80px; position: relative; z-index: 1; }
         .about-wrap h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.03em; }
         .about-wrap .subtitle { font-size: 1rem; color: var(--text-sub); margin-bottom: 48px; line-height: 1.75; }
-        .about-wrap h2 { font-size: 0.85rem; font-weight: 700; margin: 36px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); }
+        .about-wrap h2 { font-size: 0.82rem; font-weight: 700; margin: 36px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); }
         .about-wrap p, .about-wrap li { font-size: 0.92rem; line-height: 1.8; color: var(--text-sub); }
         .about-wrap ul { padding-left: 20px; }
         .about-wrap a { color: var(--accent-2); text-decoration: none; }
@@ -35,13 +35,13 @@
 </head>
 <body>
     <header>
-        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+        <h1 style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
             <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
         <nav id="main-nav">
-            <a href="index.html" class="nav-link">Dashboard</a>
-            <a href="about.html" class="nav-link" style="color:var(--text)">About</a>
-            <a href="privacy.html" class="nav-link">Privacy</a>
+            <a href="index.html" class="nav-link" data-en="Dashboard" data-ko="대시보드">Dashboard</a>
+            <a href="about.html" class="nav-link" style="color:var(--text)" data-en="About" data-ko="소개">About</a>
+            <a href="privacy.html" class="nav-link" data-en="Privacy" data-ko="개인정보">Privacy</a>
         </nav>
         <div class="header-controls">
             <button id="lang-toggle" onclick="toggleLang()">한국어</button>
@@ -50,67 +50,67 @@
     </header>
 
     <div class="about-wrap">
-        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <a href="index.html" class="back-link" data-en="← Back to Dashboard" data-ko="← 대시보드로 돌아가기">← Back to Dashboard</a>
 
-        <h1>About Crypto Intelligence</h1>
-        <p class="subtitle">Crypto Intelligence is a free, real-time cryptocurrency dashboard designed to help investors and enthusiasts track market trends, monitor prices, and stay informed — all in one place.</p>
+        <h1 data-en="About Crypto Intelligence" data-ko="크립토 인텔리전스 소개">About Crypto Intelligence</h1>
+        <p class="subtitle" data-en="Crypto Intelligence is a free, real-time cryptocurrency dashboard designed to help investors and enthusiasts track market trends, monitor prices, and stay informed — all in one place." data-ko="크립토 인텔리전스는 투자자와 암호화폐 애호가들이 시장 트렌드를 추적하고 가격을 모니터링하며 최신 정보를 한 곳에서 확인할 수 있도록 설계된 무료 실시간 암호화폐 대시보드입니다.">Crypto Intelligence is a free, real-time cryptocurrency dashboard designed to help investors and enthusiasts track market trends, monitor prices, and stay informed — all in one place.</p>
 
-        <h2>What We Offer</h2>
+        <h2 data-en="What We Offer" data-ko="주요 기능">What We Offer</h2>
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="icon">📊</div>
-                <h3>Real-Time Market Data</h3>
-                <p>Live prices, 24h changes, and 7-day sparkline charts for the top 100 cryptocurrencies by market cap.</p>
+                <h3 data-en="Real-Time Market Data" data-ko="실시간 시장 데이터">Real-Time Market Data</h3>
+                <p data-en="Live prices, 24h changes, and 7-day sparkline charts for the top 100 cryptocurrencies by market cap." data-ko="시가총액 상위 100개 암호화폐의 실시간 가격, 24시간 변동률, 7일 스파크라인 차트를 제공합니다.">Live prices, 24h changes, and 7-day sparkline charts for the top 100 cryptocurrencies by market cap.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">🌍</div>
-                <h3>Global Market Overview</h3>
-                <p>Total market capitalization, 24h trading volume, Bitcoin dominance, and active coin counts updated every minute.</p>
+                <h3 data-en="Global Market Overview" data-ko="글로벌 시장 현황">Global Market Overview</h3>
+                <p data-en="Total market capitalization, 24h trading volume, Bitcoin dominance, and active coin counts updated every minute." data-ko="전체 시가총액, 24시간 거래량, 비트코인 점유율, 활성 코인 수를 매분 업데이트합니다.">Total market capitalization, 24h trading volume, Bitcoin dominance, and active coin counts updated every minute.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">😨</div>
-                <h3>Fear & Greed Index</h3>
-                <p>Real-time market sentiment indicator to help gauge the emotional state of the crypto market.</p>
+                <h3 data-en="Fear & Greed Index" data-ko="공포·탐욕 지수">Fear & Greed Index</h3>
+                <p data-en="Real-time market sentiment indicator to help gauge the emotional state of the crypto market." data-ko="암호화폐 시장의 심리 상태를 측정하는 실시간 시장 심리 지표입니다.">Real-time market sentiment indicator to help gauge the emotional state of the crypto market.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">💼</div>
-                <h3>Portfolio Tracker</h3>
-                <p>Track your holdings and monitor your total portfolio value in USD or KRW — stored privately in your browser.</p>
+                <h3 data-en="Portfolio Tracker" data-ko="포트폴리오 트래커">Portfolio Tracker</h3>
+                <p data-en="Track your holdings and monitor your total portfolio value in USD or KRW — stored privately in your browser." data-ko="보유 자산을 추적하고 USD 또는 KRW로 전체 포트폴리오 가치를 확인하세요. 데이터는 브라우저에 안전하게 저장됩니다.">Track your holdings and monitor your total portfolio value in USD or KRW — stored privately in your browser.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">📰</div>
-                <h3>Live News Feed</h3>
-                <p>Latest cryptocurrency headlines from leading industry publications, updated automatically.</p>
+                <h3 data-en="Live News Feed" data-ko="실시간 뉴스">Live News Feed</h3>
+                <p data-en="Latest cryptocurrency headlines from leading industry publications, updated automatically." data-ko="주요 암호화폐 미디어의 최신 헤드라인을 자동으로 업데이트합니다.">Latest cryptocurrency headlines from leading industry publications, updated automatically.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">📈</div>
-                <h3>Interactive Charts</h3>
-                <p>Click any coin to open a full-featured TradingView chart with technical analysis tools.</p>
+                <h3 data-en="Interactive Charts" data-ko="인터랙티브 차트">Interactive Charts</h3>
+                <p data-en="Click any coin to open a full-featured TradingView chart with technical analysis tools." data-ko="코인을 클릭하면 기술적 분석 도구가 포함된 TradingView 차트를 바로 확인할 수 있습니다.">Click any coin to open a full-featured TradingView chart with technical analysis tools.</p>
             </div>
         </div>
 
-        <h2>Our Mission</h2>
-        <p>The cryptocurrency market moves fast. Crypto Intelligence was built to give every investor — from beginner to experienced — access to the same quality of real-time data and tools that professionals use, completely free of charge.</p>
-        <p>We believe that informed investors make better decisions. By aggregating market data, news, and sentiment indicators into a single, clean interface, we aim to reduce the noise and help users focus on what matters.</p>
+        <h2 data-en="Our Mission" data-ko="우리의 미션">Our Mission</h2>
+        <p data-en="The cryptocurrency market moves fast. Crypto Intelligence was built to give every investor — from beginner to experienced — access to the same quality of real-time data and tools that professionals use, completely free of charge." data-ko="암호화폐 시장은 빠르게 움직입니다. 크립토 인텔리전스는 초보자부터 숙련된 투자자까지 모든 사람이 전문가 수준의 실시간 데이터와 도구를 무료로 이용할 수 있도록 만들어졌습니다.">The cryptocurrency market moves fast. Crypto Intelligence was built to give every investor — from beginner to experienced — access to the same quality of real-time data and tools that professionals use, completely free of charge.</p>
+        <p data-en="We believe that informed investors make better decisions. By aggregating market data, news, and sentiment indicators into a single, clean interface, we aim to reduce the noise and help users focus on what matters." data-ko="정보를 갖춘 투자자가 더 나은 결정을 내린다고 믿습니다. 시장 데이터, 뉴스, 심리 지표를 하나의 깔끔한 인터페이스로 통합하여 불필요한 정보를 줄이고 핵심에 집중할 수 있도록 돕습니다.">We believe that informed investors make better decisions. By aggregating market data, news, and sentiment indicators into a single, clean interface, we aim to reduce the noise and help users focus on what matters.</p>
 
-        <h2>Data Sources</h2>
-        <p>All data displayed on Crypto Intelligence is sourced from reliable, industry-recognized third-party providers:</p>
+        <h2 data-en="Data Sources" data-ko="데이터 출처">Data Sources</h2>
+        <p data-en="All data displayed on Crypto Intelligence is sourced from reliable, industry-recognized third-party providers:" data-ko="크립토 인텔리전스에 표시되는 모든 데이터는 신뢰할 수 있는 업계 공인 서드파티 제공업체로부터 수집됩니다:">All data displayed on Crypto Intelligence is sourced from reliable, industry-recognized third-party providers:</p>
         <div class="data-sources">
             <span class="data-source-tag">CoinGecko API</span>
             <span class="data-source-tag">Alternative.me (Fear & Greed)</span>
             <span class="data-source-tag">TradingView Charts</span>
             <span class="data-source-tag">CoinTelegraph News</span>
         </div>
-        <p style="margin-top:14px">Market data is refreshed every 60 seconds. News headlines are updated every 5 minutes.</p>
+        <p style="margin-top:14px" data-en="Market data is refreshed every 60 seconds. News headlines are updated every 5 minutes." data-ko="시장 데이터는 60초마다 갱신되며, 뉴스 헤드라인은 5분마다 업데이트됩니다.">Market data is refreshed every 60 seconds. News headlines are updated every 5 minutes.</p>
 
-        <h2>Supported Languages & Currencies</h2>
-        <p>Crypto Intelligence supports <strong>English and Korean (한국어)</strong> interface languages, and displays prices in both <strong>USD</strong> and <strong>KRW</strong> to serve a global audience.</p>
+        <h2 data-en="Supported Languages & Currencies" data-ko="지원 언어 및 통화">Supported Languages & Currencies</h2>
+        <p data-en="Crypto Intelligence supports English and Korean (한국어) interface languages, and displays prices in both USD and KRW to serve a global audience." data-ko="크립토 인텔리전스는 영어와 한국어(한국어) 인터페이스를 지원하며, 글로벌 사용자를 위해 USD와 KRW 두 가지 통화로 가격을 표시합니다.">Crypto Intelligence supports <strong>English and Korean (한국어)</strong> interface languages, and displays prices in both <strong>USD</strong> and <strong>KRW</strong> to serve a global audience.</p>
 
-        <h2>Privacy & Your Data</h2>
-        <p>We take your privacy seriously. Portfolio data and personal preferences are stored exclusively in your browser's localStorage and are never transmitted to any server. We do not require registration or collect personal data. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+        <h2 data-en="Privacy & Your Data" data-ko="개인정보 보호">Privacy & Your Data</h2>
+        <p data-en="We take your privacy seriously. Portfolio data and personal preferences are stored exclusively in your browser's localStorage and are never transmitted to any server. We do not require registration or collect personal data." data-ko="개인정보 보호를 중요하게 생각합니다. 포트폴리오 데이터와 개인 설정은 브라우저의 localStorage에만 저장되며 어떤 서버에도 전송되지 않습니다. 회원가입이나 개인정보 수집은 일절 없습니다.">We take your privacy seriously. Portfolio data and personal preferences are stored exclusively in your browser's localStorage and are never transmitted to any server. We do not require registration or collect personal data. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
 
-        <h2>Contact & Partnerships</h2>
-        <p>We welcome partnership inquiries, feedback, and collaboration proposals. Please reach out through the <a href="index.html#contact-section">contact form</a> on our dashboard.</p>
+        <h2 data-en="Contact & Partnerships" data-ko="제휴 및 문의">Contact & Partnerships</h2>
+        <p data-en="We welcome partnership inquiries, feedback, and collaboration proposals. Please reach out through the contact form on our dashboard." data-ko="파트너십 문의, 피드백, 협업 제안을 환영합니다. 대시보드의 문의 양식을 통해 연락해 주세요.">We welcome partnership inquiries, feedback, and collaboration proposals. Please reach out through the <a href="index.html#contact-section">contact form</a> on our dashboard.</p>
     </div>
 
     <footer>
@@ -121,6 +121,21 @@
     </footer>
 
     <script>
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang() {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = currentLang === 'ko' ? el.dataset.ko : el.dataset.en;
+            });
+            document.getElementById('lang-toggle').textContent = currentLang === 'ko' ? 'English' : '한국어';
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+
         // Theme
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
@@ -132,15 +147,8 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
             document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
         }
-        // Lang toggle — saves preference and goes back to dashboard
-        const savedLang = localStorage.getItem('lang') || 'en';
-        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
-        function toggleLang() {
-            const current = localStorage.getItem('lang') || 'en';
-            const next = current === 'en' ? 'ko' : 'en';
-            localStorage.setItem('lang', next);
-            window.location.href = 'index.html';
-        }
+
+        applyLang();
     </script>
 </body>
 </html>

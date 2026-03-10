@@ -27,13 +27,13 @@
 </head>
 <body>
     <header>
-        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+        <h1 style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
             <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
         <nav id="main-nav">
-            <a href="index.html" class="nav-link">Dashboard</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="privacy.html" class="nav-link" style="color:var(--text)">Privacy</a>
+            <a href="index.html" class="nav-link" data-en="Dashboard" data-ko="대시보드">Dashboard</a>
+            <a href="about.html" class="nav-link" data-en="About" data-ko="소개">About</a>
+            <a href="privacy.html" class="nav-link" style="color:var(--text)" data-en="Privacy" data-ko="개인정보">Privacy</a>
         </nav>
         <div class="header-controls">
             <button id="lang-toggle" onclick="toggleLang()">한국어</button>
@@ -42,45 +42,45 @@
     </header>
 
     <div class="policy-wrap">
-        <a href="index.html" class="back-link">← Back to Dashboard</a>
-        <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: March 2026</p>
+        <a href="index.html" class="back-link" data-en="← Back to Dashboard" data-ko="← 대시보드로 돌아가기">← Back to Dashboard</a>
+        <h1 data-en="Privacy Policy" data-ko="개인정보 처리방침">Privacy Policy</h1>
+        <p class="updated" data-en="Last updated: March 2026" data-ko="최종 업데이트: 2026년 3월">Last updated: March 2026</p>
 
-        <p>Crypto Intelligence ("we", "us", or "our") operates the Crypto Intelligence Dashboard website. This page informs you of our policies regarding the collection, use, and disclosure of personal information when you use our service.</p>
+        <p data-en='Crypto Intelligence ("we", "us", or "our") operates the Crypto Intelligence Dashboard website. This page informs you of our policies regarding the collection, use, and disclosure of personal information when you use our service.' data-ko='크립토 인텔리전스("당사")는 크립토 인텔리전스 대시보드 웹사이트를 운영합니다. 이 페이지는 서비스 이용 시 개인정보의 수집, 이용 및 공개에 관한 정책을 안내합니다.'>Crypto Intelligence ("we", "us", or "our") operates the Crypto Intelligence Dashboard website. This page informs you of our policies regarding the collection, use, and disclosure of personal information when you use our service.</p>
 
-        <h2>1. Information We Collect</h2>
-        <p>We do not collect any personally identifiable information unless you voluntarily submit it through our contact form. The only data stored on your device is:</p>
+        <h2 data-en="1. Information We Collect" data-ko="1. 수집하는 정보">1. Information We Collect</h2>
+        <p data-en="We do not collect any personally identifiable information unless you voluntarily submit it through our contact form. The only data stored on your device is:" data-ko="문의 양식을 통해 자발적으로 제출하지 않는 한 개인 식별 정보를 수집하지 않습니다. 기기에 저장되는 데이터는 다음과 같습니다:">We do not collect any personally identifiable information unless you voluntarily submit it through our contact form. The only data stored on your device is:</p>
         <ul>
-            <li><strong>localStorage preferences</strong> – your chosen theme (dark/light), language (EN/KO), currency (USD/KRW), and portfolio holdings. This data never leaves your browser.</li>
+            <li data-en="localStorage preferences – your chosen theme (dark/light), language (EN/KO), currency (USD/KRW), and portfolio holdings. This data never leaves your browser." data-ko="localStorage 설정 – 선택한 테마(다크/라이트), 언어(영어/한국어), 통화(USD/KRW), 포트폴리오 보유 내역. 이 데이터는 브라우저 밖으로 전송되지 않습니다."><strong>localStorage preferences</strong> – your chosen theme (dark/light), language (EN/KO), currency (USD/KRW), and portfolio holdings. This data never leaves your browser.</li>
         </ul>
 
-        <h2>2. Contact Form</h2>
-        <p>When you submit an inquiry via our contact form, your name, email address, and message are sent to us through <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. We use this information solely to respond to your inquiry and do not share it with third parties.</p>
+        <h2 data-en="2. Contact Form" data-ko="2. 문의 양식">2. Contact Form</h2>
+        <p data-en="When you submit an inquiry via our contact form, your name, email address, and message are sent to us through Formspree. We use this information solely to respond to your inquiry and do not share it with third parties." data-ko="문의 양식을 통해 문의를 제출하면 이름, 이메일 주소, 메시지가 Formspree를 통해 전송됩니다. 이 정보는 문의에 응답하는 목적으로만 사용되며 제3자와 공유하지 않습니다.">When you submit an inquiry via our contact form, your name, email address, and message are sent to us through <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. We use this information solely to respond to your inquiry and do not share it with third parties.</p>
 
-        <h2>3. Third-Party Services</h2>
-        <p>Our website uses the following third-party services that may collect data independently:</p>
+        <h2 data-en="3. Third-Party Services" data-ko="3. 제3자 서비스">3. Third-Party Services</h2>
+        <p data-en="Our website uses the following third-party services that may collect data independently:" data-ko="당사 웹사이트는 독립적으로 데이터를 수집할 수 있는 다음 제3자 서비스를 사용합니다:">Our website uses the following third-party services that may collect data independently:</p>
         <ul>
-            <li><strong>CoinGecko API</strong> – provides real-time cryptocurrency market data. See <a href="https://www.coingecko.com/en/privacy" target="_blank" rel="noopener">CoinGecko Privacy Policy</a>.</li>
-            <li><strong>TradingView</strong> – provides interactive price charts. See <a href="https://www.tradingview.com/privacy-policy/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</li>
-            <li><strong>Google AdSense</strong> – displays advertisements. Google may use cookies to serve ads based on your prior visits. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. You can opt out via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
-            <li><strong>Alternative.me</strong> – provides the Fear &amp; Greed Index data.</li>
-            <li><strong>RSS2JSON / CoinTelegraph</strong> – provides real-time news headlines.</li>
+            <li><strong>CoinGecko API</strong> – <span data-en="provides real-time cryptocurrency market data." data-ko="실시간 암호화폐 시장 데이터를 제공합니다.">provides real-time cryptocurrency market data.</span></li>
+            <li><strong>TradingView</strong> – <span data-en="provides interactive price charts." data-ko="인터랙티브 가격 차트를 제공합니다.">provides interactive price charts.</span></li>
+            <li><strong>Google AdSense</strong> – <span data-en="displays advertisements. Google may use cookies to serve ads based on your prior visits." data-ko="광고를 표시합니다. Google은 이전 방문 기록을 기반으로 맞춤형 광고를 제공하기 위해 쿠키를 사용할 수 있습니다.">displays advertisements. Google may use cookies to serve ads based on your prior visits.</span></li>
+            <li><strong>Alternative.me</strong> – <span data-en="provides the Fear &amp; Greed Index data." data-ko="공포·탐욕 지수 데이터를 제공합니다.">provides the Fear &amp; Greed Index data.</span></li>
+            <li><strong>RSS2JSON / CoinTelegraph</strong> – <span data-en="provides real-time news headlines." data-ko="실시간 뉴스 헤드라인을 제공합니다.">provides real-time news headlines.</span></li>
         </ul>
 
-        <h2>4. Cookies</h2>
-        <p>We do not set cookies ourselves. However, Google AdSense and other third-party services listed above may use cookies to personalize content and ads. You can control cookie settings through your browser.</p>
+        <h2 data-en="4. Cookies" data-ko="4. 쿠키">4. Cookies</h2>
+        <p data-en="We do not set cookies ourselves. However, Google AdSense and other third-party services listed above may use cookies to personalize content and ads. You can control cookie settings through your browser." data-ko="당사는 직접 쿠키를 설정하지 않습니다. 다만 Google AdSense 및 위에 나열된 제3자 서비스는 콘텐츠 및 광고 개인화를 위해 쿠키를 사용할 수 있습니다. 브라우저 설정을 통해 쿠키를 관리할 수 있습니다.">We do not set cookies ourselves. However, Google AdSense and other third-party services listed above may use cookies to personalize content and ads. You can control cookie settings through your browser.</p>
 
-        <h2>5. Data Security</h2>
-        <p>We take reasonable precautions to protect your information. However, no method of transmission over the internet is 100% secure. Portfolio data and preferences are stored only in your browser's localStorage and are never transmitted to our servers.</p>
+        <h2 data-en="5. Data Security" data-ko="5. 데이터 보안">5. Data Security</h2>
+        <p data-en="We take reasonable precautions to protect your information. Portfolio data and preferences are stored only in your browser's localStorage and are never transmitted to our servers." data-ko="개인정보 보호를 위해 합리적인 조치를 취합니다. 포트폴리오 데이터와 설정은 브라우저의 localStorage에만 저장되며 당사 서버로 전송되지 않습니다.">We take reasonable precautions to protect your information. Portfolio data and preferences are stored only in your browser's localStorage and are never transmitted to our servers.</p>
 
-        <h2>6. Children's Privacy</h2>
-        <p>Our service is not directed to individuals under the age of 13. We do not knowingly collect personal information from children.</p>
+        <h2 data-en="6. Children's Privacy" data-ko="6. 아동 개인정보">6. Children's Privacy</h2>
+        <p data-en="Our service is not directed to individuals under the age of 13. We do not knowingly collect personal information from children." data-ko="본 서비스는 만 13세 미만을 대상으로 하지 않습니다. 아동으로부터 고의로 개인정보를 수집하지 않습니다.">Our service is not directed to individuals under the age of 13. We do not knowingly collect personal information from children.</p>
 
-        <h2>7. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page.</p>
+        <h2 data-en="7. Changes to This Policy" data-ko="7. 방침 변경">7. Changes to This Policy</h2>
+        <p data-en='We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page.' data-ko='본 개인정보 처리방침은 수시로 업데이트될 수 있습니다. 변경 사항은 페이지 상단의 "최종 업데이트" 날짜를 통해 안내됩니다.'>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page.</p>
 
-        <h2>8. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us through the <a href="index.html#contact-section">contact form</a> on our website.</p>
+        <h2 data-en="8. Contact Us" data-ko="8. 문의">8. Contact Us</h2>
+        <p data-en="If you have any questions about this Privacy Policy, please contact us through the contact form on our website." data-ko="본 개인정보 처리방침에 대해 궁금한 점이 있으시면 웹사이트의 문의 양식을 통해 연락해 주세요.">If you have any questions about this Privacy Policy, please contact us through the <a href="index.html#contact-section">contact form</a> on our website.</p>
     </div>
 
     <footer>
@@ -90,6 +90,21 @@
     </footer>
 
     <script>
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang() {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = currentLang === 'ko' ? el.dataset.ko : el.dataset.en;
+            });
+            document.getElementById('lang-toggle').textContent = currentLang === 'ko' ? 'English' : '한국어';
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+
         // Theme
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
@@ -101,15 +116,8 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
             document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
         }
-        // Lang toggle — saves preference and goes back to dashboard
-        const savedLang = localStorage.getItem('lang') || 'en';
-        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
-        function toggleLang() {
-            const current = localStorage.getItem('lang') || 'en';
-            const next = current === 'en' ? 'ko' : 'en';
-            localStorage.setItem('lang', next);
-            window.location.href = 'index.html';
-        }
+
+        applyLang();
     </script>
 </body>
 </html>

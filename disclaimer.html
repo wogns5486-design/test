@@ -29,13 +29,13 @@
 </head>
 <body>
     <header>
-        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+        <h1 style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
             <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
         <nav id="main-nav">
-            <a href="index.html" class="nav-link">Dashboard</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="privacy.html" class="nav-link">Privacy</a>
+            <a href="index.html" class="nav-link" data-en="Dashboard" data-ko="대시보드">Dashboard</a>
+            <a href="about.html" class="nav-link" data-en="About" data-ko="소개">About</a>
+            <a href="privacy.html" class="nav-link" data-en="Privacy" data-ko="개인정보">Privacy</a>
         </nav>
         <div class="header-controls">
             <button id="lang-toggle" onclick="toggleLang()">한국어</button>
@@ -44,34 +44,34 @@
     </header>
 
     <div class="policy-wrap">
-        <a href="index.html" class="back-link">← Back to Dashboard</a>
-        <h1>Disclaimer</h1>
-        <p class="updated">Last updated: March 2026</p>
+        <a href="index.html" class="back-link" data-en="← Back to Dashboard" data-ko="← 대시보드로 돌아가기">← Back to Dashboard</a>
+        <h1 data-en="Disclaimer" data-ko="면책 조항">Disclaimer</h1>
+        <p class="updated" data-en="Last updated: March 2026" data-ko="최종 업데이트: 2026년 3월">Last updated: March 2026</p>
 
         <div class="notice-box">
-            <p>The information provided on Crypto Intelligence is for general informational purposes only and does not constitute financial, investment, or trading advice.</p>
+            <p data-en="The information provided on Crypto Intelligence is for general informational purposes only and does not constitute financial, investment, or trading advice." data-ko="크립토 인텔리전스에서 제공하는 정보는 일반적인 정보 제공 목적으로만 사용되며 금융, 투자 또는 거래 조언을 구성하지 않습니다.">The information provided on Crypto Intelligence is for general informational purposes only and does not constitute financial, investment, or trading advice.</p>
         </div>
 
-        <h2>1. Not Financial Advice</h2>
-        <p>All content on this website — including cryptocurrency prices, market data, project summaries, news headlines, and portfolio tracking tools — is provided for informational and educational purposes only. Nothing on this site should be construed as financial advice, investment advice, trading advice, or any other type of advice.</p>
+        <h2 data-en="1. Not Financial Advice" data-ko="1. 금융 조언 아님">1. Not Financial Advice</h2>
+        <p data-en="All content on this website — including cryptocurrency prices, market data, project summaries, news headlines, and portfolio tracking tools — is provided for informational and educational purposes only. Nothing on this site should be construed as financial advice, investment advice, trading advice, or any other type of advice." data-ko="본 웹사이트의 모든 콘텐츠(암호화폐 가격, 시장 데이터, 프로젝트 요약, 뉴스 헤드라인, 포트폴리오 추적 도구 포함)는 정보 및 교육 목적으로만 제공됩니다. 이 사이트의 어떤 내용도 금융, 투자, 거래 조언으로 해석되어서는 안 됩니다.">All content on this website — including cryptocurrency prices, market data, project summaries, news headlines, and portfolio tracking tools — is provided for informational and educational purposes only. Nothing on this site should be construed as financial advice, investment advice, trading advice, or any other type of advice.</p>
 
-        <h2>2. Do Your Own Research</h2>
-        <p>Cryptocurrency markets are highly volatile and unpredictable. Before making any investment decisions, you should conduct your own research and consult with a qualified financial advisor. Past performance of any cryptocurrency is not indicative of future results.</p>
+        <h2 data-en="2. Do Your Own Research" data-ko="2. 자체 조사 필요">2. Do Your Own Research</h2>
+        <p data-en="Cryptocurrency markets are highly volatile and unpredictable. Before making any investment decisions, you should conduct your own research and consult with a qualified financial advisor. Past performance of any cryptocurrency is not indicative of future results." data-ko="암호화폐 시장은 변동성이 매우 크고 예측하기 어렵습니다. 투자 결정 전에 자체 조사를 수행하고 자격을 갖춘 재무 어드바이저와 상담하시기 바랍니다. 과거 성과는 미래 결과를 보장하지 않습니다.">Cryptocurrency markets are highly volatile and unpredictable. Before making any investment decisions, you should conduct your own research and consult with a qualified financial advisor. Past performance of any cryptocurrency is not indicative of future results.</p>
 
-        <h2>3. Accuracy of Information</h2>
-        <p>While we strive to provide accurate and up-to-date information, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or suitability of the information displayed on this website. Market data is sourced from third-party APIs and may be delayed or contain errors.</p>
+        <h2 data-en="3. Accuracy of Information" data-ko="3. 정보 정확성">3. Accuracy of Information</h2>
+        <p data-en="While we strive to provide accurate and up-to-date information, we make no representations or warranties about the completeness, accuracy, or reliability of the information displayed. Market data is sourced from third-party APIs and may be delayed or contain errors." data-ko="정확하고 최신 정보를 제공하기 위해 노력하지만, 표시된 정보의 완전성, 정확성 또는 신뢰성에 대해 어떠한 보증도 하지 않습니다. 시장 데이터는 제3자 API에서 제공되며 지연되거나 오류가 포함될 수 있습니다.">While we strive to provide accurate and up-to-date information, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or suitability of the information displayed on this website. Market data is sourced from third-party APIs and may be delayed or contain errors.</p>
 
-        <h2>4. Third-Party Content</h2>
-        <p>This website displays data and content from third-party sources including CoinGecko, TradingView, Alternative.me, and news providers. We are not responsible for the accuracy or availability of content provided by these external services.</p>
+        <h2 data-en="4. Third-Party Content" data-ko="4. 제3자 콘텐츠">4. Third-Party Content</h2>
+        <p data-en="This website displays data and content from third-party sources including CoinGecko, TradingView, Alternative.me, and news providers. We are not responsible for the accuracy or availability of content provided by these external services." data-ko="본 웹사이트는 CoinGecko, TradingView, Alternative.me 및 뉴스 제공업체 등 제3자 소스의 데이터와 콘텐츠를 표시합니다. 이러한 외부 서비스가 제공하는 콘텐츠의 정확성이나 가용성에 대해 책임지지 않습니다.">This website displays data and content from third-party sources including CoinGecko, TradingView, Alternative.me, and news providers. We are not responsible for the accuracy or availability of content provided by these external services.</p>
 
-        <h2>5. Risk Warning</h2>
-        <p>Investing in cryptocurrencies involves significant risk, including the possible loss of your entire investment. You should never invest money that you cannot afford to lose. We are not liable for any losses or damages arising from reliance on information provided on this website.</p>
+        <h2 data-en="5. Risk Warning" data-ko="5. 위험 경고">5. Risk Warning</h2>
+        <p data-en="Investing in cryptocurrencies involves significant risk, including the possible loss of your entire investment. You should never invest money that you cannot afford to lose. We are not liable for any losses or damages arising from reliance on information provided on this website." data-ko="암호화폐 투자는 원금 전액 손실 가능성을 포함한 상당한 위험을 수반합니다. 잃어도 되는 자금만 투자하시기 바랍니다. 본 웹사이트 정보에 의존하여 발생한 손실이나 손해에 대해 당사는 책임을 지지 않습니다.">Investing in cryptocurrencies involves significant risk, including the possible loss of your entire investment. You should never invest money that you cannot afford to lose. We are not liable for any losses or damages arising from reliance on information provided on this website.</p>
 
-        <h2>6. No Endorsement</h2>
-        <p>The listing of any cryptocurrency on this platform does not constitute an endorsement or recommendation. Exchange links are provided for convenience only and do not represent an affiliation or endorsement of those platforms.</p>
+        <h2 data-en="6. No Endorsement" data-ko="6. 추천 아님">6. No Endorsement</h2>
+        <p data-en="The listing of any cryptocurrency on this platform does not constitute an endorsement or recommendation. Exchange links are provided for convenience only and do not represent an affiliation or endorsement of those platforms." data-ko="본 플랫폼의 암호화폐 목록은 추천이나 권장을 의미하지 않습니다. 거래소 링크는 편의를 위해 제공되며 해당 플랫폼과의 제휴 또는 보증을 나타내지 않습니다.">The listing of any cryptocurrency on this platform does not constitute an endorsement or recommendation. Exchange links are provided for convenience only and do not represent an affiliation or endorsement of those platforms.</p>
 
-        <h2>7. Contact</h2>
-        <p>If you have questions about this disclaimer, please reach out via our <a href="index.html#contact-section">contact form</a>.</p>
+        <h2 data-en="7. Contact" data-ko="7. 문의">7. Contact</h2>
+        <p data-en="If you have questions about this disclaimer, please reach out via our contact form." data-ko="면책 조항에 대한 질문이 있으시면 문의 양식을 통해 연락해 주세요.">If you have questions about this disclaimer, please reach out via our <a href="index.html#contact-section">contact form</a>.</p>
     </div>
 
     <footer>
@@ -81,6 +81,21 @@
     </footer>
 
     <script>
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang() {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = currentLang === 'ko' ? el.dataset.ko : el.dataset.en;
+            });
+            document.getElementById('lang-toggle').textContent = currentLang === 'ko' ? 'English' : '한국어';
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+
         // Theme
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
@@ -92,15 +107,8 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
             document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
         }
-        // Lang toggle
-        const savedLang = localStorage.getItem('lang') || 'en';
-        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
-        function toggleLang() {
-            const current = localStorage.getItem('lang') || 'en';
-            const next = current === 'en' ? 'ko' : 'en';
-            localStorage.setItem('lang', next);
-            window.location.href = 'index.html';
-        }
+
+        applyLang();
     </script>
 </body>
 </html>
