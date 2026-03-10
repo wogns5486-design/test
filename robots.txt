@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wogns5486-design.github.io/test/sitemap.xml

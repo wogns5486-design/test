@@ -43,6 +43,8 @@ const translations = {
         portfolioAdd: "Add",
         portfolioTotal: "Total Value",
         portfolioEmpty: "No holdings yet. Add a coin above.",
+        introTitle: "Your Free Crypto Intelligence Hub",
+        introDesc: "Real-time prices, market sentiment, and news for the top 100 cryptocurrencies — all in one place. Track your portfolio, explore interactive charts, and stay ahead of the market.",
         news: [
             "Bitcoin ETFs see record inflows as institutions accumulate.",
             "Solana ecosystem grows with new liquid staking protocols.",
@@ -80,6 +82,8 @@ const translations = {
         portfolioAdd: "추가",
         portfolioTotal: "총 자산",
         portfolioEmpty: "보유 코인이 없습니다. 위에서 추가하세요.",
+        introTitle: "무료 크립토 인텔리전스 허브",
+        introDesc: "상위 100개 암호화폐의 실시간 가격, 시장 심리, 뉴스를 한곳에서. 포트폴리오를 추적하고 인터랙티브 차트로 시장을 분석하세요.",
         news: [
             "비트코인 현물 ETF, 기관들의 대규모 매수세 유입 지속.",
             "솔라나 생태계, 신규 유동성 스테이킹 프로토콜로 성장세.",
@@ -626,6 +630,8 @@ function updateLanguage() {
     document.getElementById('h-trend').textContent = t.hTrend;
     document.getElementById('h-price').textContent = t.hPrice;
     langToggle.textContent = t.langBtn;
+    document.getElementById('intro-title').textContent = t.introTitle;
+    document.getElementById('intro-desc').textContent  = t.introDesc;
     fetchGlobalStats();
     renderCryptos(allCryptos);
     renderPortfolio();

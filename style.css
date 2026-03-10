@@ -98,7 +98,34 @@ h1 {
     font-weight: 800;
     letter-spacing: -0.02em;
 }
+#main-nav { display: flex; gap: 16px; align-items: center; margin-left: auto; margin-right: 16px; }
+.nav-link { color: var(--sub-text-color); text-decoration: none; font-size: 0.82rem; font-weight: 600; transition: color 0.15s; }
+.nav-link:hover { color: var(--accent-color); }
 .header-controls { display: flex; gap: 8px; }
+
+/* ── Intro Section ── */
+#intro-section {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #6366f1 100%);
+    padding: 36px 40px;
+    text-align: center;
+}
+body.dark-mode #intro-section {
+    background: linear-gradient(135deg, #1d3a6e 0%, #1e1b4b 100%);
+}
+#intro-content { max-width: 640px; margin: 0 auto; }
+#intro-title {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+}
+#intro-desc {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
 #theme-toggle, #lang-toggle, #currency-toggle {
     background: transparent;
     border: 1px solid var(--border-color);

@@ -5,14 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Intelligence – Real-Time Cryptocurrency Dashboard</title>
     <meta name="description" content="Track real-time prices, market trends, and news for the top 100 cryptocurrencies. Free portfolio tracker, Fear & Greed Index, and interactive charts.">
-    <meta name="keywords" content="cryptocurrency, bitcoin, ethereum, crypto prices, market cap, portfolio tracker, crypto dashboard">
+    <meta name="keywords" content="cryptocurrency, bitcoin, ethereum, crypto prices, market cap, portfolio tracker, crypto dashboard, fear greed index">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Crypto Intelligence – Real-Time Cryptocurrency Dashboard">
-    <meta property="og:description" content="Track real-time prices, market trends, and news for the top 100 cryptocurrencies.">
+    <meta property="og:description" content="Track real-time prices, market trends, and news for the top 100 cryptocurrencies. Free portfolio tracker and interactive charts.">
     <meta property="og:type" content="website">
     <meta name="google-adsense-account" content="ca-pub-8986681365997307">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8986681365997307"
      crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Crypto Intelligence",
+      "description": "Real-time cryptocurrency dashboard with prices, market data, portfolio tracker, and news for top 100 cryptocurrencies.",
+      "url": "https://wogns5486-design.github.io/test/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://wogns5486-design.github.io/test/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="style.css?v=2.2">
 </head>
 <body>
     <div id="news-ticker">
@@ -35,12 +50,24 @@
 
     <header>
         <h1 id="site-title">Crypto Intelligence</h1>
+        <nav id="main-nav">
+            <a href="about.html" class="nav-link">About</a>
+            <a href="privacy.html" class="nav-link">Privacy</a>
+        </nav>
         <div class="header-controls">
             <button id="currency-toggle">USD / KRW</button>
             <button id="lang-toggle">한국어</button>
             <button id="theme-toggle">Dark</button>
         </div>
     </header>
+
+    <!-- Intro Section -->
+    <section id="intro-section">
+        <div id="intro-content">
+            <h2 id="intro-title">Your Free Crypto Intelligence Hub</h2>
+            <p id="intro-desc">Real-time prices, market sentiment, and news for the top 100 cryptocurrencies — all in one place. Track your portfolio, explore interactive charts, and stay ahead of the market.</p>
+        </div>
+    </section>
 
     <section id="market-overview">
         <div class="sentiment-card">
@@ -56,11 +83,11 @@
     <section id="exchange-section">
         <h2 id="exchange-title">Global Exchanges</h2>
         <div class="exchange-links">
-            <a href="https://www.binance.com" target="_blank" class="exchange-card">Binance</a>
-            <a href="https://www.upbit.com" target="_blank" class="exchange-card">Upbit</a>
-            <a href="https://www.bithumb.com" target="_blank" class="exchange-card">Bithumb</a>
-            <a href="https://www.coinbase.com" target="_blank" class="exchange-card">Coinbase</a>
-            <a href="https://www.kraken.com" target="_blank" class="exchange-card">Kraken</a>
+            <a href="https://www.binance.com" target="_blank" rel="noopener" class="exchange-card">Binance</a>
+            <a href="https://www.upbit.com" target="_blank" rel="noopener" class="exchange-card">Upbit</a>
+            <a href="https://www.bithumb.com" target="_blank" rel="noopener" class="exchange-card">Bithumb</a>
+            <a href="https://www.coinbase.com" target="_blank" rel="noopener" class="exchange-card">Coinbase</a>
+            <a href="https://www.kraken.com" target="_blank" rel="noopener" class="exchange-card">Kraken</a>
         </div>
     </section>
 
@@ -82,9 +109,7 @@
             <span class="h-trend" id="h-trend">7D Trend</span>
             <span class="h-price" id="h-price">Price (24h)</span>
         </div>
-        <div id="crypto-container">
-            <!-- Data injected here -->
-        </div>
+        <div id="crypto-container"></div>
     </main>
 
     <section id="portfolio-section">
@@ -122,17 +147,18 @@
         </form>
     </section>
 
-
     <footer>
         <p id="footer-text">&copy; 2024 Crypto Intelligence Platform</p>
         <p style="margin-top:8px;font-size:0.78rem">
+            <a href="about.html">About</a>
+            &nbsp;|&nbsp;
             <a href="privacy.html">Privacy Policy</a>
             &nbsp;|&nbsp;
             <a href="disclaimer.html">Disclaimer</a>
         </p>
-        <p style="margin-top:10px;font-size:0.75rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6">
+        <p style="margin-top:10px;font-size:0.75rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;opacity:0.8">
             The information provided on this site is for informational purposes only and does not constitute financial advice.
-            Cryptocurrency investments carry significant risk. Always do your own research.
+            Cryptocurrency investments carry significant risk. Always do your own research before investing.
         </p>
     </footer>
 
@@ -147,6 +173,6 @@
         </div>
     </div>
 
-    <script src="main.js?v=2.1"></script>
+    <script src="main.js?v=2.2"></script>
 </body>
 </html>
