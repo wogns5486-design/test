@@ -10,6 +10,8 @@ let allCryptos = [];
 let currentLang = localStorage.getItem('lang') || 'en';
 let currentCurrency = localStorage.getItem('currency') || 'usd';
 let currentCategory = 'all';
+let currentPage = 1;
+const COINS_PER_PAGE = 20;
 
 const translations = {
     en: {
@@ -648,46 +650,82 @@ async function fetchCryptos() {
 function renderCryptos(data) {
     cryptoContainer.innerHTML = '';
     const searchTerm = searchInput.value.toLowerCase();
-    
-    let filtered = data.filter(c => 
-        c.name.toLowerCase().includes(searchTerm) || 
+
+    let filtered = data.filter(c =>
+        c.name.toLowerCase().includes(searchTerm) ||
         c.symbol.toLowerCase().includes(searchTerm)
     );
-
     if (currentCategory !== 'all') {
         filtered = filtered.filter(c => coinCategories[currentCategory].includes(c.id));
     }
 
-    filtered.forEach((crypto) => {
+    const totalPages = Math.max(1, Math.ceil(filtered.length / COINS_PER_PAGE));
+    if (currentPage > totalPages) currentPage = 1;
+    const paginated = filtered.slice((currentPage - 1) * COINS_PER_PAGE, currentPage * COINS_PER_PAGE);
+
+    paginated.forEach((crypto) => {
         const row = document.createElement('div');
         row.classList.add('crypto-row');
-
         const change = crypto.price_change_percentage_24h || 0;
         const changeClass = change >= 0 ? 'up' : 'down';
         const changeSymbol = change >= 0 ? '▲' : '▼';
-        
         const summary = coinSummaries[currentLang][crypto.id] || generateSummary(crypto, currentLang);
-
-        const currencySymbol = currentCurrency === 'usd' ? '$' : '₩';
+        const sym = currentCurrency === 'usd' ? '$' : '₩';
+        const sparklineId = crypto.image.split('/')[5];
 
         row.innerHTML = `
             <span class="crypto-rank">${crypto.market_cap_rank}</span>
             <div class="crypto-info">
-                <span class="crypto-name">${crypto.name}</span>
-                <span class="crypto-symbol">${crypto.symbol.toUpperCase()}</span>
+                <img class="crypto-icon" src="${crypto.image}" alt="${crypto.name}" loading="lazy">
+                <div class="crypto-name-group">
+                    <span class="crypto-name">${crypto.name}</span>
+                    <span class="crypto-symbol">${crypto.symbol.toUpperCase()}</span>
+                </div>
             </div>
             <div class="crypto-desc">${summary}</div>
             <div class="crypto-trend">
-                <img src="https://www.coingecko.com/coins/${crypto.image.split('/')[5]}/sparkline.svg" alt="trend" loading="lazy">
+                <img src="https://www.coingecko.com/coins/${sparklineId}/sparkline.svg" alt="trend" loading="lazy">
             </div>
             <div class="crypto-price-container">
-                <p class="crypto-price">${currencySymbol}${crypto.current_price.toLocaleString()}</p>
+                <p class="crypto-price">${sym}${crypto.current_price.toLocaleString()}</p>
                 <span class="crypto-change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</span>
             </div>
         `;
         row.addEventListener('click', () => openChart(crypto));
         cryptoContainer.appendChild(row);
     });
+
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+    let pag = document.getElementById('pagination');
+    if (!pag) {
+        pag = document.createElement('div');
+        pag.id = 'pagination';
+        document.querySelector('main').appendChild(pag);
+    }
+    if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
+    const maxVisible = 5;
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = Math.min(totalPages, start + maxVisible - 1);
+    if (end - start < maxVisible - 1) start = Math.max(1, end - maxVisible + 1);
+
+    let html = `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+    if (start > 1) html += `<button class="page-btn" onclick="goPage(1)">1</button>${start > 2 ? '<span id="page-info">…</span>' : ''}`;
+    for (let i = start; i <= end; i++) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    }
+    if (end < totalPages) html += `${end < totalPages - 1 ? '<span id="page-info">…</span>' : ''}<button class="page-btn" onclick="goPage(${totalPages})">${totalPages}</button>`;
+    html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>›</button>`;
+    pag.innerHTML = html;
+}
+
+function goPage(page) {
+    currentPage = page;
+    renderCryptos(allCryptos);
+    document.querySelector('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // Events
@@ -708,13 +746,14 @@ currencyToggle.addEventListener('click', () => {
     fetchCryptos();
 });
 
-searchInput.addEventListener('input', () => renderCryptos(allCryptos));
+searchInput.addEventListener('input', () => { currentPage = 1; renderCryptos(allCryptos); });
 
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelector('.filter-btn.active').classList.remove('active');
         e.target.classList.add('active');
         currentCategory = e.target.dataset.category;
+        currentPage = 1;
         renderCryptos(allCryptos);
     });
 });
