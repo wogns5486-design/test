@@ -393,6 +393,29 @@ const coinSummaries = {
     }
 };
 
+function generateSummary(crypto, lang) {
+    const rank = crypto.market_cap_rank;
+    const symbol = crypto.symbol.toUpperCase();
+
+    let categoryKey = null;
+    for (const [cat, ids] of Object.entries(coinCategories)) {
+        if (ids.includes(crypto.id)) { categoryKey = cat; break; }
+    }
+
+    const categoryNames = {
+        en: { 'layer-1': 'Layer 1 blockchain', 'ai': 'AI-sector token', 'meme': 'meme coin', 'stablecoin': 'stablecoin' },
+        ko: { 'layer-1': '레이어1 블록체인', 'ai': 'AI 분야 토큰', 'meme': '밈 코인', 'stablecoin': '스테이블코인' }
+    };
+
+    const catLabel = categoryKey
+        ? categoryNames[lang][categoryKey]
+        : (lang === 'en' ? 'digital asset' : '디지털 자산');
+
+    return lang === 'en'
+        ? `${symbol} is a ${catLabel} ranked #${rank} by global market cap.`
+        : `${symbol}은 글로벌 시가총액 ${rank}위의 ${catLabel}입니다.`;
+}
+
 function updateLanguage() {
     const t = translations[currentLang];
     document.title = t.siteTitle + " Dashboard";
@@ -466,8 +489,7 @@ function renderCryptos(data) {
         const changeClass = change >= 0 ? 'up' : 'down';
         const changeSymbol = change >= 0 ? '▲' : '▼';
         
-        const summary = coinSummaries[currentLang][crypto.id] ||
-                        (currentLang === 'en' ? "Leading project in its sector with significant market adoption." : "해당 분야에서 높은 시장 점유율을 보유한 주요 프로젝트입니다.");
+        const summary = coinSummaries[currentLang][crypto.id] || generateSummary(crypto, currentLang);
 
         const currencySymbol = currentCurrency === 'usd' ? '$' : '₩';
 
