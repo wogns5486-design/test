@@ -779,6 +779,96 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
+// ── AI Chat ──────────────────────────────────────────────
+const chatFab = document.getElementById('chat-fab');
+const chatPanel = document.getElementById('chat-panel');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const chatSendBtn = document.getElementById('chat-send-btn');
+const chatSuggestions = document.getElementById('chat-suggestions');
+
+chatFab.addEventListener('click', () => {
+    const isOpen = chatPanel.classList.toggle('open');
+    chatFab.classList.toggle('open', isOpen);
+    if (isOpen) chatInput.focus();
+});
+
+document.getElementById('chat-panel-close').addEventListener('click', () => {
+    chatPanel.classList.remove('open');
+    chatFab.classList.remove('open');
+});
+
+function buildMarketContext() {
+    if (!allCryptos.length) return '시장 데이터 로딩 중';
+    const top10 = allCryptos.slice(0, 10).map(c => {
+        const ch = c.price_change_percentage_24h?.toFixed(2) ?? 'N/A';
+        return `${c.name}(${c.symbol.toUpperCase()}): $${c.current_price.toLocaleString()} | 24h ${ch}%`;
+    }).join('\n');
+    const fgEl = document.getElementById('fear-greed-index');
+    const fgStatus = document.getElementById('sentiment-status');
+    const fg = fgEl ? `공포·탐욕 지수: ${fgEl.textContent} (${fgStatus.textContent})` : '';
+    return `${fg}\n\n상위 10개 코인:\n${top10}`;
+}
+
+function appendMessage(role, text) {
+    const div = document.createElement('div');
+    div.className = `chat-msg ${role}`;
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.textContent = text;
+    div.appendChild(bubble);
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return div;
+}
+
+function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ai';
+    div.id = 'chat-typing';
+    div.innerHTML = '<div class="chat-typing"><span></span><span></span><span></span></div>';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeTyping() {
+    const el = document.getElementById('chat-typing');
+    if (el) el.remove();
+}
+
+async function sendChatMessage(message) {
+    if (!message.trim()) return;
+    chatSuggestions.style.display = 'none';
+    appendMessage('user', message);
+    chatInput.value = '';
+    chatSendBtn.disabled = true;
+    showTyping();
+
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message, marketContext: buildMarketContext() }),
+        });
+        const data = await res.json();
+        removeTyping();
+        appendMessage('ai', data.reply || '응답을 받지 못했습니다.');
+    } catch {
+        removeTyping();
+        appendMessage('ai', '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+        chatSendBtn.disabled = false;
+        chatInput.focus();
+    }
+}
+
+chatSendBtn.addEventListener('click', () => sendChatMessage(chatInput.value));
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendChatMessage(chatInput.value); });
+
+function sendSuggestion(btn) {
+    sendChatMessage(btn.textContent);
+}
+
 // Init
 if (localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
 updateLanguage();
