@@ -1162,6 +1162,7 @@ footer a:hover { color: var(--accent-2); }
     border: none;
     color: #fff;
     cursor: pointer;
+    margin-top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1170,6 +1171,99 @@ footer a:hover { color: var(--accent-2); }
 }
 #chat-send-btn:hover { background: var(--accent-2); transform: scale(1.05); }
 #chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ══════════════════════════════════════════
+   AI DAILY REPORT SECTION
+══════════════════════════════════════════ */
+#ai-report-section {
+    max-width: 1280px;
+    margin: 32px auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 1;
+}
+
+.report-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.report-card:hover {
+    border-color: var(--glass-border-h);
+    box-shadow: var(--card-shadow);
+}
+
+.report-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--row-border);
+    padding-bottom: 16px;
+}
+
+.report-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+#report-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0;
+    flex-grow: 1;
+    letter-spacing: -0.02em;
+}
+
+#report-date {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    font-weight: 600;
+}
+
+#report-content {
+    line-height: 1.8;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+#report-content h3 {
+    color: var(--accent-2);
+    font-size: 1.1rem;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+#report-content strong {
+    color: var(--accent-2);
+}
+
+/* Loading Skeleton */
+.loading-report .skeleton-line {
+    height: 14px;
+    background: var(--row-border);
+    margin-bottom: 12px;
+    border-radius: 4px;
+    animation: report-pulse 1.5s infinite ease-in-out;
+}
+.loading-report .skeleton-line:nth-child(2) { width: 85%; }
+.loading-report .skeleton-line:nth-child(3) { width: 70%; }
+
+@keyframes report-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -1193,7 +1287,12 @@ footer a:hover { color: var(--accent-2); }
     main,
     #exchange-section,
     #category-filter,
-    #portfolio-section { padding-left: 16px; padding-right: 16px; }
+    #portfolio-section,
+    #ai-report-section { padding-left: 16px; padding-right: 16px; }
+    
+    .report-card { padding: 20px; }
+    #report-title { font-size: 1.1rem; }
+    
     .h-name { width: auto; flex: 1; }
     .crypto-info { width: auto; flex: 1; }
     .crypto-row { padding: 12px 12px; }
