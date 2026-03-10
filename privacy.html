@@ -5,23 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy – Crypto Intelligence</title>
     <meta name="description" content="Privacy Policy for Crypto Intelligence Dashboard. Learn how we handle your data.">
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-8986681365997307">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8986681365997307" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=2.3">
     <style>
-        .policy-wrap { max-width: 760px; margin: 48px auto; padding: 0 40px 80px; }
-        .policy-wrap h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
-        .policy-wrap .updated { color: var(--sub-text-color); font-size: 0.85rem; margin-bottom: 36px; }
-        .policy-wrap h2 { font-size: 1rem; font-weight: 700; margin: 32px 0 10px; }
-        .policy-wrap p, .policy-wrap li { font-size: 0.92rem; line-height: 1.75; color: var(--sub-text-color); }
+        .policy-wrap { max-width: 760px; margin: 48px auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+        .policy-wrap h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.03em; }
+        .policy-wrap .updated { color: var(--text-sub); font-size: 0.82rem; margin-bottom: 36px; font-weight: 600; }
+        .policy-wrap h2 { font-size: 0.82rem; font-weight: 700; margin: 32px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); }
+        .policy-wrap p, .policy-wrap li { font-size: 0.92rem; line-height: 1.8; color: var(--text-sub); }
         .policy-wrap ul { padding-left: 20px; }
-        .policy-wrap a { color: var(--accent-color); text-decoration: none; }
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; }
+        .policy-wrap a { color: var(--accent-2); text-decoration: none; }
+        .policy-wrap a:hover { text-decoration: underline; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-sub); font-size: 0.82rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; transition: color 0.15s; }
+        .back-link:hover { color: var(--accent-2); text-decoration: none; }
+        @media (max-width: 768px) { .policy-wrap { padding: 0 20px 60px; } }
     </style>
 </head>
 <body>
     <header>
-        <h1 style="color:var(--accent-color);margin:0;font-size:1.2rem;font-weight:800">
-            <a href="index.html" style="text-decoration:none;color:inherit">Crypto Intelligence</a>
+        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+            <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="privacy.html" class="nav-link" style="color:var(--text)">Privacy</a>
+        </nav>
+        <div class="header-controls">
+            <button id="lang-toggle" onclick="toggleLang()">한국어</button>
+            <button id="theme-toggle" onclick="toggleTheme()">Light</button>
+        </div>
     </header>
 
     <div class="policy-wrap">
@@ -38,14 +55,14 @@
         </ul>
 
         <h2>2. Contact Form</h2>
-        <p>When you submit an inquiry via our contact form, your name, email address, and message are sent to us through <a href="https://formspree.io" target="_blank">Formspree</a>. We use this information solely to respond to your inquiry and do not share it with third parties.</p>
+        <p>When you submit an inquiry via our contact form, your name, email address, and message are sent to us through <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. We use this information solely to respond to your inquiry and do not share it with third parties.</p>
 
         <h2>3. Third-Party Services</h2>
         <p>Our website uses the following third-party services that may collect data independently:</p>
         <ul>
-            <li><strong>CoinGecko API</strong> – provides real-time cryptocurrency market data. See <a href="https://www.coingecko.com/en/privacy" target="_blank">CoinGecko Privacy Policy</a>.</li>
-            <li><strong>TradingView</strong> – provides interactive price charts. See <a href="https://www.tradingview.com/privacy-policy/" target="_blank">TradingView Privacy Policy</a>.</li>
-            <li><strong>Google AdSense</strong> – displays advertisements. Google may use cookies to serve ads based on your prior visits. See <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a>. You can opt out via <a href="https://www.google.com/settings/ads" target="_blank">Google Ad Settings</a>.</li>
+            <li><strong>CoinGecko API</strong> – provides real-time cryptocurrency market data. See <a href="https://www.coingecko.com/en/privacy" target="_blank" rel="noopener">CoinGecko Privacy Policy</a>.</li>
+            <li><strong>TradingView</strong> – provides interactive price charts. See <a href="https://www.tradingview.com/privacy-policy/" target="_blank" rel="noopener">TradingView Privacy Policy</a>.</li>
+            <li><strong>Google AdSense</strong> – displays advertisements. Google may use cookies to serve ads based on your prior visits. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. You can opt out via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</li>
             <li><strong>Alternative.me</strong> – provides the Fear &amp; Greed Index data.</li>
             <li><strong>RSS2JSON / CoinTelegraph</strong> – provides real-time news headlines.</li>
         </ul>
@@ -66,14 +83,33 @@
         <p>If you have any questions about this Privacy Policy, please contact us through the <a href="index.html#contact-section">contact form</a> on our website.</p>
     </div>
 
-    <footer style="text-align:center;padding:32px;color:var(--sub-text-color);font-size:0.8rem">
+    <footer>
         <p>&copy; 2024 Crypto Intelligence Platform &nbsp;|&nbsp;
-        <a href="privacy.html" style="color:var(--sub-text-color)">Privacy Policy</a> &nbsp;|&nbsp;
-        <a href="disclaimer.html" style="color:var(--sub-text-color)">Disclaimer</a></p>
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="disclaimer.html">Disclaimer</a></p>
     </footer>
 
     <script>
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+        // Theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-toggle').textContent = 'Dark';
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
+        }
+        // Lang toggle — saves preference and goes back to dashboard
+        const savedLang = localStorage.getItem('lang') || 'en';
+        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
+        function toggleLang() {
+            const current = localStorage.getItem('lang') || 'en';
+            const next = current === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', next);
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>

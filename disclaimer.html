@@ -5,25 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disclaimer – Crypto Intelligence</title>
     <meta name="description" content="Disclaimer for Crypto Intelligence Dashboard. Important information about the nature of our content.">
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-8986681365997307">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8986681365997307" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=2.3">
     <style>
-        .policy-wrap { max-width: 760px; margin: 48px auto; padding: 0 40px 80px; }
-        .policy-wrap h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
-        .policy-wrap .updated { color: var(--sub-text-color); font-size: 0.85rem; margin-bottom: 36px; }
-        .policy-wrap h2 { font-size: 1rem; font-weight: 700; margin: 32px 0 10px; }
-        .policy-wrap p, .policy-wrap li { font-size: 0.92rem; line-height: 1.75; color: var(--sub-text-color); }
+        .policy-wrap { max-width: 760px; margin: 48px auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+        .policy-wrap h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.03em; }
+        .policy-wrap .updated { color: var(--text-sub); font-size: 0.82rem; margin-bottom: 36px; font-weight: 600; }
+        .policy-wrap h2 { font-size: 0.82rem; font-weight: 700; margin: 32px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); }
+        .policy-wrap p, .policy-wrap li { font-size: 0.92rem; line-height: 1.8; color: var(--text-sub); }
         .policy-wrap ul { padding-left: 20px; }
-        .policy-wrap a { color: var(--accent-color); text-decoration: none; }
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; }
-        .notice-box { background: rgba(239,68,68,0.08); border-left: 3px solid var(--down-color); padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 28px; }
-        .notice-box p { margin: 0; color: var(--text-color) !important; font-weight: 500; }
+        .policy-wrap a { color: var(--accent-2); text-decoration: none; }
+        .policy-wrap a:hover { text-decoration: underline; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-sub); font-size: 0.82rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; transition: color 0.15s; }
+        .back-link:hover { color: var(--accent-2); text-decoration: none; }
+        .notice-box { background: rgba(246,70,93,0.08); border-left: 3px solid var(--down); padding: 16px 20px; border-radius: 0 10px 10px 0; margin-bottom: 28px; }
+        .notice-box p { margin: 0; color: var(--text) !important; font-weight: 500; }
+        @media (max-width: 768px) { .policy-wrap { padding: 0 20px 60px; } }
     </style>
 </head>
 <body>
     <header>
-        <h1 style="color:var(--accent-color);margin:0;font-size:1.2rem;font-weight:800">
-            <a href="index.html" style="text-decoration:none;color:inherit">Crypto Intelligence</a>
+        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+            <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="privacy.html" class="nav-link">Privacy</a>
+        </nav>
+        <div class="header-controls">
+            <button id="lang-toggle" onclick="toggleLang()">한국어</button>
+            <button id="theme-toggle" onclick="toggleTheme()">Light</button>
+        </div>
     </header>
 
     <div class="policy-wrap">
@@ -57,14 +74,33 @@
         <p>If you have questions about this disclaimer, please reach out via our <a href="index.html#contact-section">contact form</a>.</p>
     </div>
 
-    <footer style="text-align:center;padding:32px;color:var(--sub-text-color);font-size:0.8rem">
+    <footer>
         <p>&copy; 2024 Crypto Intelligence Platform &nbsp;|&nbsp;
-        <a href="privacy.html" style="color:var(--sub-text-color)">Privacy Policy</a> &nbsp;|&nbsp;
-        <a href="disclaimer.html" style="color:var(--sub-text-color)">Disclaimer</a></p>
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="disclaimer.html">Disclaimer</a></p>
     </footer>
 
     <script>
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+        // Theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-toggle').textContent = 'Dark';
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
+        }
+        // Lang toggle
+        const savedLang = localStorage.getItem('lang') || 'en';
+        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
+        function toggleLang() {
+            const current = localStorage.getItem('lang') || 'en';
+            const next = current === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', next);
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>

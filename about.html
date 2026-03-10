@@ -6,38 +6,47 @@
     <title>About – Crypto Intelligence</title>
     <meta name="description" content="Learn about Crypto Intelligence, a real-time cryptocurrency dashboard providing market data, news, and portfolio tracking for crypto investors worldwide.">
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="style.css?v=2.1">
     <meta name="google-adsense-account" content="ca-pub-8986681365997307">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8986681365997307" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=2.3">
     <style>
-        .about-wrap { max-width: 860px; margin: 48px auto; padding: 0 40px 80px; }
-        .about-wrap h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
-        .about-wrap .subtitle { font-size: 1.05rem; color: var(--sub-text-color); margin-bottom: 48px; line-height: 1.6; }
-        .about-wrap h2 { font-size: 1rem; font-weight: 700; margin: 36px 0 10px; }
-        .about-wrap p, .about-wrap li { font-size: 0.92rem; line-height: 1.8; color: var(--sub-text-color); }
+        .about-wrap { max-width: 860px; margin: 48px auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+        .about-wrap h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.03em; }
+        .about-wrap .subtitle { font-size: 1rem; color: var(--text-sub); margin-bottom: 48px; line-height: 1.75; }
+        .about-wrap h2 { font-size: 0.85rem; font-weight: 700; margin: 36px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); }
+        .about-wrap p, .about-wrap li { font-size: 0.92rem; line-height: 1.8; color: var(--text-sub); }
         .about-wrap ul { padding-left: 20px; }
-        .about-wrap a { color: var(--accent-color); text-decoration: none; }
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
-        .feature-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; }
+        .about-wrap a { color: var(--accent-2); text-decoration: none; }
+        .about-wrap a:hover { text-decoration: underline; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-sub); font-size: 0.82rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; transition: color 0.15s; }
+        .back-link:hover { color: var(--accent-2); text-decoration: none; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
+        .feature-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; transition: border-color 0.2s; backdrop-filter: blur(10px); }
+        .feature-card:hover { border-color: var(--glass-border-h); }
         .feature-card .icon { font-size: 1.5rem; margin-bottom: 10px; }
-        .feature-card h3 { font-size: 0.88rem; font-weight: 700; margin: 0 0 6px; }
+        .feature-card h3 { font-size: 0.88rem; font-weight: 700; margin: 0 0 6px; color: var(--text); }
         .feature-card p { font-size: 0.82rem; margin: 0; }
-        .data-sources { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-        .data-source-tag { background: var(--card-bg); border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; color: var(--sub-text-color); }
+        .data-sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .data-source-tag { background: var(--glass); border: 1px solid var(--glass-border); padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; color: var(--text-sub); }
         @media (max-width: 768px) { .about-wrap { padding: 0 20px 60px; } }
     </style>
 </head>
 <body>
     <header>
-        <h1 style="color:var(--accent-color);margin:0;font-size:1.2rem;font-weight:800">
-            <a href="index.html" style="text-decoration:none;color:inherit">Crypto Intelligence</a>
+        <h1 id="site-title" style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+            <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
         </h1>
-        <nav style="display:flex;gap:16px;font-size:0.82rem;font-weight:600">
-            <a href="index.html" style="color:var(--sub-text-color);text-decoration:none">Dashboard</a>
-            <a href="about.html" style="color:var(--accent-color);text-decoration:none">About</a>
-            <a href="privacy.html" style="color:var(--sub-text-color);text-decoration:none">Privacy</a>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="about.html" class="nav-link" style="color:var(--text)">About</a>
+            <a href="privacy.html" class="nav-link">Privacy</a>
         </nav>
+        <div class="header-controls">
+            <button id="lang-toggle" onclick="toggleLang()">한국어</button>
+            <button id="theme-toggle" onclick="toggleTheme()">Light</button>
+        </div>
     </header>
 
     <div class="about-wrap">
@@ -104,15 +113,34 @@
         <p>We welcome partnership inquiries, feedback, and collaboration proposals. Please reach out through the <a href="index.html#contact-section">contact form</a> on our dashboard.</p>
     </div>
 
-    <footer style="text-align:center;padding:32px;color:var(--sub-text-color);font-size:0.8rem;border-top:1px solid var(--border-color)">
+    <footer>
         <p>&copy; 2024 Crypto Intelligence Platform &nbsp;|&nbsp;
-        <a href="about.html" style="color:var(--sub-text-color)">About</a> &nbsp;|&nbsp;
-        <a href="privacy.html" style="color:var(--sub-text-color)">Privacy Policy</a> &nbsp;|&nbsp;
-        <a href="disclaimer.html" style="color:var(--sub-text-color)">Disclaimer</a></p>
+        <a href="about.html">About</a> &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="disclaimer.html">Disclaimer</a></p>
     </footer>
 
     <script>
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+        // Theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-toggle').textContent = 'Dark';
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
+        }
+        // Lang toggle — saves preference and goes back to dashboard
+        const savedLang = localStorage.getItem('lang') || 'en';
+        if (savedLang === 'ko') document.getElementById('lang-toggle').textContent = 'English';
+        function toggleLang() {
+            const current = localStorage.getItem('lang') || 'en';
+            const next = current === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', next);
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>
