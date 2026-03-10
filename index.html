@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Intelligence Dashboard</title>
-    <link rel="stylesheet" href="style.css?v=1.5">
+    <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
     <div id="news-ticker">
         <div class="ticker-content" id="ticker-content">
             Loading latest crypto headlines...
         </div>
+    </div>
+
+    <div id="global-stats">
+        <span id="stat-marketcap">--</span>
+        <span class="stat-divider">|</span>
+        <span id="stat-volume">--</span>
+        <span class="stat-divider">|</span>
+        <span id="stat-btc-dom">--</span>
+        <span class="stat-divider">|</span>
+        <span id="stat-eth-dom">--</span>
+        <span class="stat-divider">|</span>
+        <span id="stat-coins">--</span>
     </div>
 
     <header>
@@ -67,6 +79,22 @@
         </div>
     </main>
 
+    <section id="portfolio-section">
+        <h2 id="portfolio-title">Portfolio Tracker</h2>
+        <div id="portfolio-input-row">
+            <select id="portfolio-coin-select">
+                <option value="">Select a coin...</option>
+            </select>
+            <input type="number" id="portfolio-amount" placeholder="Amount" min="0" step="any">
+            <button id="portfolio-add-btn">Add</button>
+        </div>
+        <div id="portfolio-list"></div>
+        <div id="portfolio-total-row">
+            <span id="portfolio-total-label">Total Value:</span>
+            <span id="portfolio-total-value">$0.00</span>
+        </div>
+    </section>
+
     <section id="contact-section">
         <h2 id="contact-title">Partnership & Inquiries</h2>
         <form action="https://formspree.io/f/xvzwzwrj" method="POST">
@@ -90,7 +118,7 @@
         <h2 id="comments-title">Community Discussion</h2>
         <div id="disqus_thread"></div>
         <script>
-            (function() { 
+            (function() {
             var d = document, s = d.createElement('script');
             s.src = 'https://test1-8p7a9dlhgh.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
@@ -98,9 +126,22 @@
             })();
         </script>
     </section>
+
     <footer>
         <p id="footer-text">&copy; 2024 Crypto Intelligence Platform</p>
     </footer>
-    <script src="main.js?v=1.5"></script>
+
+    <!-- Chart Modal -->
+    <div id="chart-modal">
+        <div class="chart-modal-content">
+            <div class="chart-modal-header">
+                <span id="modal-coin-title"></span>
+                <button id="modal-close">✕</button>
+            </div>
+            <div id="tradingview-widget-container"></div>
+        </div>
+    </div>
+
+    <script src="main.js?v=2.0"></script>
 </body>
 </html>

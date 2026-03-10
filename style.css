@@ -253,15 +253,174 @@ footer { padding: 40px; text-align: center; color: var(--sub-text-color); }
     font-weight: 600;
 }
 
+/* Global Stats Bar */
+#global-stats {
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: var(--sub-text-color);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+#global-stats span { font-weight: 600; }
+.stat-divider { opacity: 0.3; }
+
+/* Clickable coin rows */
+.crypto-row { cursor: pointer; }
+
+/* Portfolio Section */
+#portfolio-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+#portfolio-section h2 { margin-bottom: 20px; }
+
+#portfolio-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#portfolio-coin-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+#portfolio-amount {
+    width: 150px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+#portfolio-add-btn {
+    padding: 10px 24px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.portfolio-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    gap: 10px;
+}
+.portfolio-item-name { font-weight: 700; flex: 1; }
+.portfolio-item-amount { color: var(--sub-text-color); font-size: 0.9rem; min-width: 120px; }
+.portfolio-item-value { font-weight: 700; min-width: 140px; text-align: right; }
+.portfolio-item-change { font-size: 0.85rem; font-weight: 600; min-width: 70px; text-align: right; }
+.portfolio-remove-btn {
+    background: none;
+    border: none;
+    color: var(--sub-text-color);
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0 6px;
+    line-height: 1;
+}
+.portfolio-remove-btn:hover { color: var(--down-color); }
+
+#portfolio-total-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-top: 2px solid var(--accent-color);
+}
+#portfolio-total-label { color: var(--sub-text-color); }
+#portfolio-empty {
+    text-align: center;
+    padding: 30px;
+    color: var(--sub-text-color);
+    background: var(--card-bg);
+}
+
+/* Chart Modal */
+#chart-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+#chart-modal.open { display: flex; }
+
+.chart-modal-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 900px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.chart-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+#modal-close {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--sub-text-color);
+    line-height: 1;
+}
+#modal-close:hover { color: var(--text-color); }
+
+#tradingview-widget-container {
+    height: 500px;
+    width: 100%;
+}
+
 @media (max-width: 992px) {
     .h-trend, .crypto-trend { display: none; }
 }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
+    #global-stats { padding: 8px 20px; }
     #market-overview { flex-direction: column; padding: 20px; gap: 15px; }
     .search-container { max-width: 100%; width: 100%; }
     .table-header, .h-desc, .crypto-desc { display: none; }
     .h-name, .crypto-info { flex: 1; }
     .crypto-row { padding: 15px; }
+    #portfolio-section { padding: 0 20px; }
+    #tradingview-widget-container { height: 350px; }
+    .portfolio-item-amount, .portfolio-item-change { display: none; }
 }

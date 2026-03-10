@@ -32,13 +32,16 @@ const translations = {
         hPrice: "Price (24h)",
         loading: "Loading data...",
         langBtn: "한국어",
-        tickerPrefix: "LATEST NEWS: ",
-        news: [
-            "Bitcoin ETFs see record inflows as institutions accumulate.",
-            "Solana ecosystem grows with new liquid staking protocols.",
-            "AI-themed tokens surge amid NVIDIA's quarterly earnings.",
-            "Ethereum's Dencun upgrade successfully reduces L2 fees."
-        ]
+        statMarketCap: "Market Cap",
+        statVolume: "24h Volume",
+        statBtcDom: "BTC Dom",
+        statEthDom: "ETH Dom",
+        statCoins: "Active Coins",
+        portfolioTitle: "Portfolio Tracker",
+        portfolioPlaceholder: "Select a coin...",
+        portfolioAdd: "Add",
+        portfolioTotal: "Total Value",
+        portfolioEmpty: "No holdings yet. Add a coin above.",
     },
     ko: {
         siteTitle: "크립토 인텔리전스",
@@ -60,13 +63,16 @@ const translations = {
         hPrice: "가격 (24h 변동)",
         loading: "데이터 로딩 중...",
         langBtn: "English",
-        tickerPrefix: "주요 뉴스: ",
-        news: [
-            "비트코인 현물 ETF, 기관들의 대규모 매수세 유입 지속.",
-            "솔라나 생태계, 신규 유동성 스테이킹 프로토콜로 성장세.",
-            "엔비디아 실적 발표 후 AI 관련 가상자산 동반 급등.",
-            "이더리움 덴쿤 업그레이드로 레이어2 수수료 대폭 절감."
-        ]
+        statMarketCap: "시가총액",
+        statVolume: "24h 거래량",
+        statBtcDom: "BTC 점유율",
+        statEthDom: "ETH 점유율",
+        statCoins: "활성 코인",
+        portfolioTitle: "포트폴리오 트래커",
+        portfolioPlaceholder: "코인 선택...",
+        portfolioAdd: "추가",
+        portfolioTotal: "총 자산",
+        portfolioEmpty: "보유 코인이 없습니다. 위에서 추가하세요.",
     }
 };
 
@@ -416,6 +422,178 @@ function generateSummary(crypto, lang) {
         : `${symbol}은 글로벌 시가총액 ${rank}위의 ${catLabel}입니다.`;
 }
 
+// ── Helper ──────────────────────────────────────────────
+function formatLargeNumber(num) {
+    if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
+    if (num >= 1e9)  return (num / 1e9).toFixed(2) + 'B';
+    if (num >= 1e6)  return (num / 1e6).toFixed(2) + 'M';
+    return num.toLocaleString();
+}
+
+// ── 1. Global Market Stats ───────────────────────────────
+async function fetchGlobalStats() {
+    try {
+        const res = await fetch('https://api.coingecko.com/api/v3/global');
+        const { data: d } = await res.json();
+        const t = translations[currentLang];
+        const sym = currentCurrency === 'usd' ? '$' : '₩';
+        const cap = d.total_market_cap[currentCurrency];
+        const vol = d.total_volume[currentCurrency];
+        const btc = d.market_cap_percentage.btc.toFixed(1);
+        const eth = d.market_cap_percentage.eth.toFixed(1);
+        const chg = d.market_cap_change_percentage_24h_usd.toFixed(2);
+        const chgClass = chg >= 0 ? 'up' : 'down';
+        document.getElementById('stat-marketcap').innerHTML =
+            `${t.statMarketCap}: ${sym}${formatLargeNumber(cap)} <span class="${chgClass}">${chg >= 0 ? '▲' : '▼'}${Math.abs(chg)}%</span>`;
+        document.getElementById('stat-volume').textContent  = `${t.statVolume}: ${sym}${formatLargeNumber(vol)}`;
+        document.getElementById('stat-btc-dom').textContent = `${t.statBtcDom}: ${btc}%`;
+        document.getElementById('stat-eth-dom').textContent = `${t.statEthDom}: ${eth}%`;
+        document.getElementById('stat-coins').textContent   = `${t.statCoins}: ${d.active_cryptocurrencies.toLocaleString()}`;
+    } catch(e) {}
+}
+
+// ── 2. Real-time News ────────────────────────────────────
+async function fetchNews() {
+    try {
+        const url = 'https://api.rss2json.com/v1/api.json?rss_url=https://cointelegraph.com/rss&count=20';
+        const res  = await fetch(url);
+        const data = await res.json();
+        if (data.status === 'ok' && data.items.length) {
+            tickerContent.innerHTML = data.items
+                .map(item => `<span>• ${item.title}</span>`)
+                .join('&nbsp;&nbsp;&nbsp;&nbsp;');
+            return;
+        }
+    } catch(e) {}
+    // Fallback to static headlines
+    const t = translations[currentLang];
+    tickerContent.innerHTML = t.news.map(n => `<span>• ${n}</span>`).join('&nbsp;&nbsp;&nbsp;&nbsp;');
+}
+
+// ── 3. Portfolio Tracker ─────────────────────────────────
+let portfolio = JSON.parse(localStorage.getItem('portfolio') || '[]');
+
+function savePortfolio() {
+    localStorage.setItem('portfolio', JSON.stringify(portfolio));
+}
+
+function renderPortfolio() {
+    const t = translations[currentLang];
+    const list = document.getElementById('portfolio-list');
+    const totalEl = document.getElementById('portfolio-total-value');
+    const sym = currentCurrency === 'usd' ? '$' : '₩';
+
+    document.getElementById('portfolio-title').textContent = t.portfolioTitle;
+    document.getElementById('portfolio-add-btn').textContent = t.portfolioAdd;
+    document.getElementById('portfolio-total-label').textContent = t.portfolioTotal + ':';
+    document.getElementById('portfolio-coin-select').options[0].text = t.portfolioPlaceholder;
+
+    if (portfolio.length === 0) {
+        list.innerHTML = `<div id="portfolio-empty">${t.portfolioEmpty}</div>`;
+        totalEl.textContent = `${sym}0.00`;
+        return;
+    }
+
+    let total = 0;
+    list.innerHTML = '';
+    portfolio.forEach((item, idx) => {
+        const coin = allCryptos.find(c => c.id === item.id);
+        if (!coin) return;
+        const value = coin.current_price * item.amount;
+        const change = coin.price_change_percentage_24h || 0;
+        total += value;
+        const row = document.createElement('div');
+        row.className = 'portfolio-item';
+        row.innerHTML = `
+            <span class="portfolio-item-name">${coin.name} <small style="color:var(--sub-text-color)">${coin.symbol.toUpperCase()}</small></span>
+            <span class="portfolio-item-amount">${item.amount} ${coin.symbol.toUpperCase()}</span>
+            <span class="portfolio-item-value">${sym}${value.toLocaleString(undefined, {maximumFractionDigits: 2})}</span>
+            <span class="portfolio-item-change ${change >= 0 ? 'up' : 'down'}">${change >= 0 ? '▲' : '▼'}${Math.abs(change).toFixed(2)}%</span>
+            <button class="portfolio-remove-btn" data-idx="${idx}">✕</button>
+        `;
+        list.appendChild(row);
+    });
+    totalEl.textContent = `${sym}${total.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+
+    list.querySelectorAll('.portfolio-remove-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            portfolio.splice(parseInt(e.target.dataset.idx), 1);
+            savePortfolio();
+            renderPortfolio();
+        });
+    });
+}
+
+function populatePortfolioSelect() {
+    const select = document.getElementById('portfolio-coin-select');
+    const t = translations[currentLang];
+    select.innerHTML = `<option value="">${t.portfolioPlaceholder}</option>`;
+    allCryptos.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = `${c.name} (${c.symbol.toUpperCase()})`;
+        select.appendChild(opt);
+    });
+}
+
+document.getElementById('portfolio-add-btn').addEventListener('click', () => {
+    const select = document.getElementById('portfolio-coin-select');
+    const amountInput = document.getElementById('portfolio-amount');
+    const id = select.value;
+    const amount = parseFloat(amountInput.value);
+    if (!id || !amount || amount <= 0) return;
+    const existing = portfolio.find(p => p.id === id);
+    if (existing) {
+        existing.amount += amount;
+    } else {
+        portfolio.push({ id, amount });
+    }
+    savePortfolio();
+    renderPortfolio();
+    amountInput.value = '';
+    select.value = '';
+});
+
+// ── 4. TradingView Chart Modal ───────────────────────────
+function openChart(coin) {
+    const modal = document.getElementById('chart-modal');
+    const container = document.getElementById('tradingview-widget-container');
+    document.getElementById('modal-coin-title').textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+    container.innerHTML = '';
+    const isDark = body.classList.contains('dark-mode');
+    const symbol = `BINANCE:${coin.symbol.toUpperCase()}USDT`;
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    script.async = true;
+    script.textContent = JSON.stringify({
+        symbol,
+        interval: 'D',
+        timezone: 'Etc/UTC',
+        theme: isDark ? 'dark' : 'light',
+        style: '1',
+        locale: 'en',
+        width: '100%',
+        height: '500',
+        allow_symbol_change: true,
+        hide_side_toolbar: false,
+    });
+    container.appendChild(script);
+    modal.classList.add('open');
+}
+
+document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('chart-modal').classList.remove('open');
+    document.getElementById('tradingview-widget-container').innerHTML = '';
+});
+document.getElementById('chart-modal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove('open');
+        document.getElementById('tradingview-widget-container').innerHTML = '';
+    }
+});
+
+// ────────────────────────────────────────────────────────
 function updateLanguage() {
     const t = translations[currentLang];
     document.title = t.siteTitle + " Dashboard";
@@ -435,11 +613,9 @@ function updateLanguage() {
     document.getElementById('h-trend').textContent = t.hTrend;
     document.getElementById('h-price').textContent = t.hPrice;
     langToggle.textContent = t.langBtn;
-    
-    // Update News Ticker
-    tickerContent.innerHTML = t.news.map(n => `<span>• ${n}</span>`).join('&nbsp;&nbsp;&nbsp;&nbsp;');
-    
+    fetchGlobalStats();
     renderCryptos(allCryptos);
+    renderPortfolio();
 }
 
 async function fetchFearAndGreed() {
@@ -459,10 +635,11 @@ async function fetchFearAndGreed() {
 
 async function fetchCryptos() {
     try {
-        const currency = currentCurrency.toUpperCase();
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currentCurrency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h`);
         allCryptos = await response.json();
+        populatePortfolioSelect();
         renderCryptos(allCryptos);
+        renderPortfolio();
     } catch (error) {
         cryptoContainer.innerHTML = `<p>${translations[currentLang].loading}</p>`;
     }
@@ -508,6 +685,7 @@ function renderCryptos(data) {
                 <span class="crypto-change ${changeClass}">${changeSymbol} ${Math.abs(change).toFixed(2)}%</span>
             </div>
         `;
+        row.addEventListener('click', () => openChart(crypto));
         cryptoContainer.appendChild(row);
     });
 }
@@ -544,6 +722,10 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // Init
 if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
 updateLanguage();
+fetchNews();
 fetchFearAndGreed();
+fetchGlobalStats();
 fetchCryptos();
 setInterval(fetchCryptos, 60000);
+setInterval(fetchGlobalStats, 60000);
+setInterval(fetchNews, 300000);
