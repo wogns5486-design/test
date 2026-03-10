@@ -578,7 +578,7 @@ function openChart(coin) {
     const container = document.getElementById('tradingview-widget-container');
     document.getElementById('modal-coin-title').textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
     container.innerHTML = '';
-    const isDark = body.classList.contains('dark-mode');
+    const isDark = !body.classList.contains('light-mode');
     const symbol = `BINANCE:${coin.symbol.toUpperCase()}USDT`;
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -630,6 +630,7 @@ function updateLanguage() {
     document.getElementById('h-trend').textContent = t.hTrend;
     document.getElementById('h-price').textContent = t.hPrice;
     langToggle.textContent = t.langBtn;
+    themeToggle.textContent = body.classList.contains('light-mode') ? t.themeDark : t.themeLight;
     document.getElementById('intro-title').textContent = t.introTitle;
     document.getElementById('intro-desc').textContent  = t.introDesc;
     fetchGlobalStats();
@@ -646,9 +647,9 @@ async function fetchFearAndGreed() {
         const indexEl = document.getElementById('fear-greed-index');
         indexEl.textContent = value;
         document.getElementById('sentiment-status').textContent = classification;
-        if (value > 70) indexEl.style.color = 'var(--up-color)';
-        else if (value < 30) indexEl.style.color = 'var(--down-color)';
-        else indexEl.style.color = 'var(--accent-color)';
+        if (value > 70) indexEl.style.color = 'var(--up)';
+        else if (value < 30) indexEl.style.color = 'var(--down)';
+        else indexEl.style.color = 'var(--accent-2)';
     } catch (err) {}
 }
 
@@ -747,8 +748,11 @@ function goPage(page) {
 
 // Events
 themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    body.classList.toggle('light-mode');
+    const isLight = body.classList.contains('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const t = translations[currentLang];
+    themeToggle.textContent = isLight ? t.themeDark : t.themeLight;
 });
 
 langToggle.addEventListener('click', () => {
@@ -776,7 +780,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 // Init
-if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
+if (localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
 updateLanguage();
 fetchNews();
 fetchFearAndGreed();
