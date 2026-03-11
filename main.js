@@ -636,7 +636,6 @@ function updateLanguage() {
     fetchGlobalStats();
     renderCryptos(allCryptos);
     renderPortfolio();
-    fetchAIReport();
 }
 
 async function fetchFearAndGreed() {
