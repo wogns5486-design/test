@@ -74,16 +74,19 @@ export async function onRequestGet(context) {
             throw new Error(`Gemini API error: ${errMsg}`);
         }
 
-        const reportText = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate report.";
+        const reportText = aiData.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!reportText) {
+            throw new Error(`No content in Gemini response: ${JSON.stringify(aiData).slice(0, 300)}`);
+        }
 
         return new Response(JSON.stringify({
             report: reportText,
             date: new Date().toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US'),
             fng: fngValue
         }), {
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
-                "Cache-Control": "public, max-age=3600"
+                "Cache-Control": "no-store"
             }
         });
 
