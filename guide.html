@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Beginner's Guide – Crypto Intelligence</title>
+    <meta name="description" content="A complete beginner's guide to cryptocurrency. Learn what Bitcoin is, how blockchain works, how to read the Fear & Greed Index, and how to start investing safely.">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-8986681365997307">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8986681365997307" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=2.3">
+    <style>
+        .guide-wrap { max-width: 860px; margin: 48px auto; padding: 0 40px 80px; position: relative; z-index: 1; }
+        .guide-wrap h1 { font-size: 1.9rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.03em; }
+        .guide-wrap .lead { font-size: 1rem; color: var(--text-sub); margin-bottom: 48px; line-height: 1.8; }
+        .guide-wrap h2 { font-size: 1.15rem; font-weight: 800; margin: 52px 0 14px; letter-spacing: -0.02em; color: var(--text); border-left: 3px solid var(--accent-2); padding-left: 14px; }
+        .guide-wrap h3 { font-size: 0.88rem; font-weight: 700; margin: 28px 0 8px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-sub); }
+        .guide-wrap p { font-size: 0.95rem; line-height: 1.85; color: var(--text-sub); margin-bottom: 16px; }
+        .guide-wrap ul, .guide-wrap ol { padding-left: 22px; margin-bottom: 16px; }
+        .guide-wrap li { font-size: 0.93rem; line-height: 1.85; color: var(--text-sub); margin-bottom: 6px; }
+        .guide-wrap a { color: var(--accent-2); text-decoration: none; }
+        .guide-wrap a:hover { text-decoration: underline; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-sub); font-size: 0.82rem; font-weight: 600; text-decoration: none; margin-bottom: 32px; transition: color 0.15s; }
+        .back-link:hover { color: var(--accent-2); text-decoration: none; }
+
+        .toc { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; padding: 24px 28px; margin-bottom: 48px; }
+        .toc-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-sub); margin-bottom: 14px; }
+        .toc ol { margin: 0; padding-left: 20px; }
+        .toc li { font-size: 0.9rem; margin-bottom: 8px; }
+        .toc a { color: var(--accent-2); text-decoration: none; font-weight: 600; }
+        .toc a:hover { text-decoration: underline; }
+
+        .info-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; padding: 22px 26px; margin: 24px 0; }
+        .info-card .icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .info-card p { margin: 0; font-size: 0.9rem; }
+
+        .coin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 20px 0; }
+        .coin-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px; }
+        .coin-card .coin-name { font-size: 0.92rem; font-weight: 800; margin-bottom: 6px; color: var(--text); }
+        .coin-card .coin-symbol { font-size: 0.75rem; font-weight: 700; color: var(--accent-2); margin-bottom: 10px; font-family: 'IBM Plex Mono', monospace; }
+        .coin-card p { font-size: 0.84rem; margin: 0; line-height: 1.7; }
+
+        .fng-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+        .fng-table th { text-align: left; padding: 10px 14px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-sub); border-bottom: 1px solid var(--border); }
+        .fng-table td { padding: 12px 14px; border-bottom: 1px solid var(--row-border); color: var(--text-sub); }
+        .fng-table tr:last-child td { border-bottom: none; }
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .badge-red { background: var(--down-bg); color: var(--down); }
+        .badge-orange { background: rgba(255,140,0,0.12); color: #ff8c00; }
+        .badge-yellow { background: rgba(255,200,0,0.12); color: #c8a000; }
+        .badge-green { background: var(--up-bg); color: var(--up); }
+
+        .step-list { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+        .step-list li { counter-increment: step; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+        .step-list li::before { content: counter(step); min-width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .step-content { flex: 1; }
+        .step-content strong { display: block; font-size: 0.92rem; color: var(--text); margin-bottom: 4px; }
+        .step-content span { font-size: 0.87rem; color: var(--text-sub); line-height: 1.7; }
+
+        .warning-box { background: rgba(246,70,93,0.07); border: 1px solid rgba(246,70,93,0.2); border-radius: 12px; padding: 18px 22px; margin: 24px 0; }
+        .warning-box p { margin: 0; font-size: 0.9rem; color: var(--text-sub); }
+        .warning-box strong { color: var(--down); }
+
+        .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 20px 0; }
+        .glossary-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 10px; padding: 16px 18px; }
+        .glossary-item .term { font-size: 0.85rem; font-weight: 800; color: var(--accent-2); margin-bottom: 5px; font-family: 'IBM Plex Mono', monospace; }
+        .glossary-item .def { font-size: 0.83rem; color: var(--text-sub); line-height: 1.65; }
+
+        @media (max-width: 768px) { .guide-wrap { padding: 0 20px 60px; } .guide-wrap h1 { font-size: 1.4rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="font-size:1.15rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#58a6ff 0%,#7bb3ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0">
+            <a href="index.html" style="text-decoration:none;background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Crypto Intelligence</a>
+        </h1>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link" data-en="Dashboard" data-ko="대시보드">Dashboard</a>
+            <a href="guide.html" class="nav-link" style="color:var(--text)" data-en="Guide" data-ko="가이드">Guide</a>
+            <a href="about.html" class="nav-link" data-en="About" data-ko="소개">About</a>
+            <a href="privacy.html" class="nav-link" data-en="Privacy" data-ko="개인정보">Privacy</a>
+        </nav>
+        <div class="header-controls">
+            <button id="lang-toggle" onclick="toggleLang()">한국어</button>
+            <button id="theme-toggle" onclick="toggleTheme()">Light</button>
+        </div>
+    </header>
+
+    <div class="guide-wrap">
+        <a href="index.html" class="back-link" data-en="← Back to Dashboard" data-ko="← 대시보드로 돌아가기">← Back to Dashboard</a>
+
+        <h1 data-en="Beginner's Guide to Cryptocurrency" data-ko="암호화폐 입문 가이드">Beginner's Guide to Cryptocurrency</h1>
+        <p class="lead" data-en="Everything you need to know to get started — from understanding Bitcoin and blockchain to reading market indicators and managing risk." data-ko="비트코인과 블록체인 이해부터 시장 지표 읽는 법, 리스크 관리까지 — 암호화폐를 시작하기 위해 알아야 할 모든 것.">Everything you need to know to get started — from understanding Bitcoin and blockchain to reading market indicators and managing risk.</p>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <div class="toc-title" data-en="Table of Contents" data-ko="목차">Table of Contents</div>
+            <ol>
+                <li><a href="#what-is-crypto" data-en="What Is Cryptocurrency?" data-ko="암호화폐란 무엇인가?">What Is Cryptocurrency?</a></li>
+                <li><a href="#blockchain" data-en="How Blockchain Works" data-ko="블록체인의 원리">How Blockchain Works</a></li>
+                <li><a href="#major-coins" data-en="Major Coins Explained" data-ko="주요 코인 소개">Major Coins Explained</a></li>
+                <li><a href="#fear-greed" data-en="Understanding the Fear & Greed Index" data-ko="공포·탐욕 지수 이해하기">Understanding the Fear & Greed Index</a></li>
+                <li><a href="#how-to-start" data-en="How to Start Investing" data-ko="투자 시작하는 방법">How to Start Investing</a></li>
+                <li><a href="#risk" data-en="Risk Management" data-ko="리스크 관리">Risk Management</a></li>
+                <li><a href="#glossary" data-en="Glossary of Key Terms" data-ko="핵심 용어 사전">Glossary of Key Terms</a></li>
+            </ol>
+        </div>
+
+        <!-- Section 1 -->
+        <h2 id="what-is-crypto" data-en="1. What Is Cryptocurrency?" data-ko="1. 암호화폐란 무엇인가?">1. What Is Cryptocurrency?</h2>
+        <p data-en="Cryptocurrency is a form of digital money that uses cryptography to secure transactions and control the creation of new units. Unlike traditional currencies issued by governments and central banks, cryptocurrencies operate on decentralized networks — meaning no single authority controls them." data-ko="암호화폐는 암호화 기술을 사용해 거래를 보호하고 새 화폐 발행을 통제하는 디지털 화폐입니다. 정부나 중앙은행이 발행하는 전통 화폐와 달리, 암호화폐는 탈중앙화된 네트워크에서 운영됩니다. 즉, 어떤 단일 기관도 이를 통제하지 않습니다.">Cryptocurrency is a form of digital money that uses cryptography to secure transactions and control the creation of new units. Unlike traditional currencies issued by governments and central banks, cryptocurrencies operate on decentralized networks — meaning no single authority controls them.</p>
+        <p data-en="The first and most well-known cryptocurrency, Bitcoin, was created in 2009 by an anonymous person or group using the name Satoshi Nakamoto. Since then, thousands of cryptocurrencies have been created, each with different purposes and technologies." data-ko="최초이자 가장 잘 알려진 암호화폐인 비트코인은 2009년 사토시 나카모토라는 익명의 인물 또는 그룹에 의해 만들어졌습니다. 그 이후 수천 개의 암호화폐가 각기 다른 목적과 기술을 갖고 등장했습니다.">The first and most well-known cryptocurrency, Bitcoin, was created in 2009 by an anonymous person or group using the name Satoshi Nakamoto. Since then, thousands of cryptocurrencies have been created, each with different purposes and technologies.</p>
+
+        <div class="info-card">
+            <div class="icon">💡</div>
+            <p data-en="Think of cryptocurrency like digital gold. Just as gold is scarce, durable, and recognized worldwide as a store of value, Bitcoin shares similar properties — but exists entirely in digital form, transferable anywhere in the world within minutes." data-ko="암호화폐를 디지털 금이라고 생각해보세요. 금이 희소하고 내구성이 있으며 전 세계적으로 가치 저장 수단으로 인정받듯이, 비트코인도 유사한 특성을 지닙니다. 다만 완전히 디지털 형태로 존재하며, 전 세계 어디로든 수 분 내에 전송할 수 있습니다.">Think of cryptocurrency like digital gold. Just as gold is scarce, durable, and recognized worldwide as a store of value, Bitcoin shares similar properties — but exists entirely in digital form, transferable anywhere in the world within minutes.</p>
+        </div>
+
+        <h3 data-en="Key Properties of Cryptocurrency" data-ko="암호화폐의 주요 특성">Key Properties of Cryptocurrency</h3>
+        <ul>
+            <li data-en="Decentralized — No central authority controls it" data-ko="탈중앙화 — 어떤 중앙 기관도 통제하지 않음">Decentralized — No central authority controls it</li>
+            <li data-en="Transparent — All transactions are recorded on a public ledger" data-ko="투명성 — 모든 거래가 공개 장부에 기록됨">Transparent — All transactions are recorded on a public ledger</li>
+            <li data-en="Immutable — Once recorded, transactions cannot be altered" data-ko="불변성 — 한 번 기록된 거래는 수정 불가">Immutable — Once recorded, transactions cannot be altered</li>
+            <li data-en="Borderless — Can be sent anywhere in the world without intermediaries" data-ko="경계 없음 — 중간 기관 없이 전 세계 어디든 전송 가능">Borderless — Can be sent anywhere in the world without intermediaries</li>
+            <li data-en="Scarce — Most cryptocurrencies have a fixed maximum supply" data-ko="희소성 — 대부분의 암호화폐는 최대 발행량이 고정됨">Scarce — Most cryptocurrencies have a fixed maximum supply</li>
+        </ul>
+
+        <!-- Section 2 -->
+        <h2 id="blockchain" data-en="2. How Blockchain Works" data-ko="2. 블록체인의 원리">2. How Blockchain Works</h2>
+        <p data-en="Blockchain is the underlying technology that powers most cryptocurrencies. Imagine a notebook that records every transaction ever made. Now imagine thousands of people each holding an identical copy of that notebook — and every time a new transaction is added, all copies are updated simultaneously. That's essentially how blockchain works." data-ko="블록체인은 대부분의 암호화폐를 지탱하는 핵심 기술입니다. 모든 거래 내역이 기록된 노트를 상상해보세요. 이제 수천 명이 각자 동일한 노트 사본을 갖고 있고, 새 거래가 추가될 때마다 모든 사본이 동시에 업데이트된다고 상상해보세요. 이것이 바로 블록체인의 작동 방식입니다.">Blockchain is the underlying technology that powers most cryptocurrencies. Imagine a notebook that records every transaction ever made. Now imagine thousands of people each holding an identical copy of that notebook — and every time a new transaction is added, all copies are updated simultaneously. That's essentially how blockchain works.</p>
+        <p data-en="Transactions are grouped into 'blocks.' Each block contains a unique fingerprint (hash) of the previous block, linking them into a chain. Altering any past transaction would break the chain and be immediately detected by the network — making fraud virtually impossible." data-ko="거래들은 '블록'으로 묶입니다. 각 블록에는 이전 블록의 고유 지문(해시)이 포함되어 체인을 형성합니다. 과거 거래를 수정하면 체인이 끊기고 네트워크에 즉시 감지되어 사실상 위조가 불가능합니다.">Transactions are grouped into 'blocks.' Each block contains a unique fingerprint (hash) of the previous block, linking them into a chain. Altering any past transaction would break the chain and be immediately detected by the network — making fraud virtually impossible.</p>
+
+        <h3 data-en="How a Transaction Is Processed" data-ko="거래가 처리되는 과정">How a Transaction Is Processed</h3>
+        <ol>
+            <li data-en="You initiate a transaction (e.g., send 0.01 BTC to a friend)" data-ko="거래 시작 (예: 친구에게 0.01 BTC 전송)">You initiate a transaction (e.g., send 0.01 BTC to a friend)</li>
+            <li data-en="The transaction is broadcast to thousands of nodes (computers) worldwide" data-ko="거래가 전 세계 수천 개의 노드(컴퓨터)에 전파됨">The transaction is broadcast to thousands of nodes (computers) worldwide</li>
+            <li data-en="Nodes validate the transaction using agreed-upon rules" data-ko="노드들이 합의된 규칙으로 거래를 검증">Nodes validate the transaction using agreed-upon rules</li>
+            <li data-en="Valid transactions are bundled into a new block" data-ko="유효한 거래들이 새 블록으로 묶임">Valid transactions are bundled into a new block</li>
+            <li data-en="The block is added to the chain — the transaction is complete" data-ko="블록이 체인에 추가되어 거래 완료">The block is added to the chain — the transaction is complete</li>
+        </ol>
+
+        <!-- Section 3 -->
+        <h2 id="major-coins" data-en="3. Major Coins Explained" data-ko="3. 주요 코인 소개">3. Major Coins Explained</h2>
+        <p data-en="With thousands of cryptocurrencies available, it's easy to feel overwhelmed. Here are the most important ones every beginner should understand." data-ko="수천 개의 암호화폐가 있어 처음엔 막막할 수 있습니다. 초보자라면 꼭 알아야 할 주요 코인들을 소개합니다.">With thousands of cryptocurrencies available, it's easy to feel overwhelmed. Here are the most important ones every beginner should understand.</p>
+
+        <div class="coin-grid">
+            <div class="coin-card">
+                <div class="coin-name" data-en="Bitcoin" data-ko="비트코인">Bitcoin</div>
+                <div class="coin-symbol">BTC</div>
+                <p data-en="The original cryptocurrency. Created as 'digital gold,' Bitcoin has a fixed supply of 21 million coins. It is the most widely held and recognized crypto asset, often seen as a long-term store of value." data-ko="최초의 암호화폐. '디지털 금'으로 설계된 비트코인은 2,100만 개로 발행량이 고정되어 있습니다. 가장 널리 보유되고 인정받는 암호화폐 자산으로 장기 가치 저장 수단으로 여겨집니다.">The original cryptocurrency. Created as 'digital gold,' Bitcoin has a fixed supply of 21 million coins. It is the most widely held and recognized crypto asset, often seen as a long-term store of value.</p>
+            </div>
+            <div class="coin-card">
+                <div class="coin-name" data-en="Ethereum" data-ko="이더리움">Ethereum</div>
+                <div class="coin-symbol">ETH</div>
+                <p data-en="A programmable blockchain that introduced 'smart contracts' — self-executing code that powers decentralized apps (dApps), DeFi protocols, and NFTs. Ethereum is often described as a decentralized world computer." data-ko="'스마트 컨트랙트'를 도입한 프로그래밍 가능한 블록체인으로, 탈중앙화 앱(dApp), DeFi 프로토콜, NFT를 구동합니다. 이더리움은 종종 탈중앙화된 세계 컴퓨터로 불립니다.">A programmable blockchain that introduced 'smart contracts' — self-executing code that powers decentralized apps (dApps), DeFi protocols, and NFTs. Ethereum is often described as a decentralized world computer.</p>
+            </div>
+            <div class="coin-card">
+                <div class="coin-name" data-en="Solana" data-ko="솔라나">Solana</div>
+                <div class="coin-symbol">SOL</div>
+                <p data-en="A high-performance blockchain designed for speed and low transaction costs. Solana can process thousands of transactions per second, making it popular for gaming, NFTs, and high-frequency DeFi applications." data-ko="속도와 낮은 수수료를 위해 설계된 고성능 블록체인. 초당 수천 건의 거래를 처리할 수 있어 게임, NFT, 고빈도 DeFi 앱에서 인기가 높습니다.">A high-performance blockchain designed for speed and low transaction costs. Solana can process thousands of transactions per second, making it popular for gaming, NFTs, and high-frequency DeFi applications.</p>
+            </div>
+            <div class="coin-card">
+                <div class="coin-name" data-en="Stablecoins" data-ko="스테이블코인">Stablecoins</div>
+                <div class="coin-symbol">USDT · USDC</div>
+                <p data-en="Cryptocurrencies pegged to the value of a stable asset, usually the US dollar. They allow investors to stay in the crypto ecosystem without exposure to price volatility — useful for trading, saving, and transferring value." data-ko="미국 달러 등 안정적인 자산에 가치가 고정된 암호화폐. 가격 변동성 없이 암호화폐 생태계에 머물 수 있어 거래, 저축, 자산 이동에 유용합니다.">Cryptocurrencies pegged to the value of a stable asset, usually the US dollar. They allow investors to stay in the crypto ecosystem without exposure to price volatility — useful for trading, saving, and transferring value.</p>
+            </div>
+            <div class="coin-card">
+                <div class="coin-name" data-en="BNB" data-ko="BNB">BNB</div>
+                <div class="coin-symbol">BNB</div>
+                <p data-en="Originally created by Binance as an exchange utility token, BNB now powers the BNB Chain ecosystem. It is used to pay trading fees at a discount on Binance, the world's largest crypto exchange." data-ko="처음엔 바이낸스의 거래소 유틸리티 토큰으로 만들어졌으나, 이제는 BNB 체인 생태계를 구동합니다. 세계 최대 거래소 바이낸스에서 거래 수수료 할인에 사용됩니다.">Originally created by Binance as an exchange utility token, BNB now powers the BNB Chain ecosystem. It is used to pay trading fees at a discount on Binance, the world's largest crypto exchange.</p>
+            </div>
+            <div class="coin-card">
+                <div class="coin-name" data-en="XRP" data-ko="XRP">XRP</div>
+                <div class="coin-symbol">XRP</div>
+                <p data-en="Designed for fast, low-cost international money transfers. XRP is used by banks and financial institutions for cross-border payments, settling transactions in 3–5 seconds at minimal cost." data-ko="빠르고 저렴한 국제 송금을 위해 설계되었습니다. 은행과 금융 기관이 국가 간 결제에 활용하며, 거래를 3~5초 내 최소 비용으로 처리합니다.">Designed for fast, low-cost international money transfers. XRP is used by banks and financial institutions for cross-border payments, settling transactions in 3–5 seconds at minimal cost.</p>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <h2 id="fear-greed" data-en="4. Understanding the Fear & Greed Index" data-ko="4. 공포·탐욕 지수 이해하기">4. Understanding the Fear & Greed Index</h2>
+        <p data-en="The Crypto Fear & Greed Index is a single number from 0 to 100 that summarizes the overall emotional state of the cryptocurrency market. It was inspired by Warren Buffett's famous advice: 'Be fearful when others are greedy, and greedy when others are fearful.'" data-ko="암호화폐 공포·탐욕 지수는 0에서 100 사이의 단일 숫자로 암호화폐 시장의 전반적인 감정 상태를 나타냅니다. 워렌 버핏의 유명한 조언에서 영감을 받았습니다: '남들이 탐욕스러울 때 두려워하고, 남들이 두려워할 때 탐욕스러워져라.'">The Crypto Fear & Greed Index is a single number from 0 to 100 that summarizes the overall emotional state of the cryptocurrency market. It was inspired by Warren Buffett's famous advice: 'Be fearful when others are greedy, and greedy when others are fearful.'</p>
+        <p data-en="The index is calculated from five data sources: price volatility, market momentum, social media sentiment, Bitcoin dominance, and Google Trends data. Together they paint a picture of whether investors are currently driven by panic or euphoria." data-ko="이 지수는 가격 변동성, 시장 모멘텀, 소셜 미디어 감정, 비트코인 점유율, 구글 트렌드 데이터 등 5가지 소스로 계산됩니다. 이를 통해 투자자들이 현재 공황 상태인지 열광 상태인지를 파악할 수 있습니다.">The index is calculated from five data sources: price volatility, market momentum, social media sentiment, Bitcoin dominance, and Google Trends data. Together they paint a picture of whether investors are currently driven by panic or euphoria.</p>
+
+        <table class="fng-table">
+            <thead>
+                <tr>
+                    <th data-en="Range" data-ko="범위">Range</th>
+                    <th data-en="Label" data-ko="상태">Label</th>
+                    <th data-en="What It Means" data-ko="의미">What It Means</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0 – 24</td>
+                    <td><span class="badge badge-red" data-en="Extreme Fear" data-ko="극도의 공포">Extreme Fear</span></td>
+                    <td data-en="Investors are panic selling. Historically, this zone often presents buying opportunities." data-ko="투자자들이 패닉 매도 중. 역사적으로 이 구간은 매수 기회를 제공하는 경우가 많습니다.">Investors are panic selling. Historically, this zone often presents buying opportunities.</td>
+                </tr>
+                <tr>
+                    <td>25 – 44</td>
+                    <td><span class="badge badge-orange" data-en="Fear" data-ko="공포">Fear</span></td>
+                    <td data-en="Market sentiment is negative. Prices may continue to fall but the pace is slowing." data-ko="시장 심리가 부정적입니다. 가격이 계속 하락할 수 있지만 속도는 둔화되고 있습니다.">Market sentiment is negative. Prices may continue to fall but the pace is slowing.</td>
+                </tr>
+                <tr>
+                    <td>45 – 55</td>
+                    <td><span class="badge badge-yellow" data-en="Neutral" data-ko="중립">Neutral</span></td>
+                    <td data-en="Market is balanced between buyers and sellers. Consolidation often occurs in this range." data-ko="매수·매도 세력이 균형을 이루고 있습니다. 이 구간에서 횡보가 자주 나타납니다.">Market is balanced between buyers and sellers. Consolidation often occurs in this range.</td>
+                </tr>
+                <tr>
+                    <td>56 – 74</td>
+                    <td><span class="badge badge-green" data-en="Greed" data-ko="탐욕">Greed</span></td>
+                    <td data-en="Investors are optimistic and buying aggressively. Markets are trending upward." data-ko="투자자들이 낙관적이며 공격적으로 매수 중. 시장이 상승 추세입니다.">Investors are optimistic and buying aggressively. Markets are trending upward.</td>
+                </tr>
+                <tr>
+                    <td>75 – 100</td>
+                    <td><span class="badge badge-red" data-en="Extreme Greed" data-ko="극도의 탐욕">Extreme Greed</span></td>
+                    <td data-en="Market is overheated. Everyone is buying out of FOMO. Historically precedes corrections." data-ko="시장이 과열되어 있습니다. FOMO로 모두가 매수 중. 역사적으로 조정이 선행하는 경우가 많습니다.">Market is overheated. Everyone is buying out of FOMO. Historically precedes corrections.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-card">
+            <div class="icon">📊</div>
+            <p data-en="You can check the current Fear & Greed Index live on our dashboard. It updates daily and is one of the simplest tools to gauge overall market sentiment at a glance." data-ko="현재 공포·탐욕 지수는 저희 대시보드에서 실시간으로 확인할 수 있습니다. 매일 업데이트되며, 전반적인 시장 심리를 한눈에 파악하는 가장 간단한 도구 중 하나입니다.">You can check the current Fear & Greed Index live on our <a href="index.html">dashboard</a>. It updates daily and is one of the simplest tools to gauge overall market sentiment at a glance.</p>
+        </div>
+
+        <!-- Section 5 -->
+        <h2 id="how-to-start" data-en="5. How to Start Investing" data-ko="5. 투자 시작하는 방법">5. How to Start Investing</h2>
+        <p data-en="Getting started with cryptocurrency doesn't have to be complicated. Follow these steps to begin your journey safely and responsibly." data-ko="암호화폐 투자를 시작하는 것이 복잡할 필요는 없습니다. 아래 단계를 따라 안전하고 책임감 있게 시작해보세요.">Getting started with cryptocurrency doesn't have to be complicated. Follow these steps to begin your journey safely and responsibly.</p>
+
+        <ol class="step-list">
+            <li>
+                <div class="step-content">
+                    <strong data-en="Educate yourself first" data-ko="먼저 공부하기">Educate yourself first</strong>
+                    <span data-en="Read about the coins you're interested in. Understand what problem they solve, who uses them, and what their tokenomics look like. Never invest in something you don't understand." data-ko="관심 있는 코인에 대해 공부하세요. 어떤 문제를 해결하는지, 누가 사용하는지, 토큰 경제 구조가 어떤지 이해하세요. 이해하지 못하는 것에는 투자하지 마세요.">Read about the coins you're interested in. Understand what problem they solve, who uses them, and what their tokenomics look like. Never invest in something you don't understand.</span>
+                </div>
+            </li>
+            <li>
+                <div class="step-content">
+                    <strong data-en="Choose a reputable exchange" data-ko="신뢰할 수 있는 거래소 선택">Choose a reputable exchange</strong>
+                    <span data-en="Sign up with a regulated and established exchange such as Binance, Coinbase, Upbit, or Kraken. Look for exchanges with strong security records, insurance funds, and transparent fee structures." data-ko="Binance, Coinbase, Upbit, Kraken 등 규제를 받는 검증된 거래소에 가입하세요. 강력한 보안 이력, 보험 기금, 투명한 수수료 구조를 갖춘 거래소를 선택하세요.">Sign up with a regulated and established exchange such as Binance, Coinbase, Upbit, or Kraken. Look for exchanges with strong security records, insurance funds, and transparent fee structures.</span>
+                </div>
+            </li>
+            <li>
+                <div class="step-content">
+                    <strong data-en="Start small with a fixed amount" data-ko="소액으로 시작하기">Start small with a fixed amount</strong>
+                    <span data-en="Begin with an amount you can afford to lose entirely. The crypto market is volatile, and even experienced investors can face significant losses. Starting small lets you learn without major financial risk." data-ko="전액 손실되어도 감당할 수 있는 금액으로 시작하세요. 암호화폐 시장은 변동성이 높고 경험 많은 투자자도 큰 손실을 볼 수 있습니다. 소액으로 시작하면 큰 재정적 위험 없이 배울 수 있습니다.">Begin with an amount you can afford to lose entirely. The crypto market is volatile, and even experienced investors can face significant losses. Starting small lets you learn without major financial risk.</span>
+                </div>
+            </li>
+            <li>
+                <div class="step-content">
+                    <strong data-en="Enable two-factor authentication (2FA)" data-ko="이중 인증(2FA) 활성화">Enable two-factor authentication (2FA)</strong>
+                    <span data-en="Always enable 2FA on your exchange account and email. Use an authenticator app (Google Authenticator or Authy) rather than SMS, which can be compromised via SIM swapping." data-ko="거래소 계정과 이메일에 반드시 2FA를 활성화하세요. SIM 스와핑에 취약한 SMS 대신 인증기 앱(Google Authenticator 또는 Authy)을 사용하세요.">Always enable 2FA on your exchange account and email. Use an authenticator app (Google Authenticator or Authy) rather than SMS, which can be compromised via SIM swapping.</span>
+                </div>
+            </li>
+            <li>
+                <div class="step-content">
+                    <strong data-en="Consider dollar-cost averaging (DCA)" data-ko="분할 매수(DCA) 전략 고려">Consider dollar-cost averaging (DCA)</strong>
+                    <span data-en="Instead of investing everything at once, buy a fixed dollar amount at regular intervals (weekly or monthly). DCA reduces the impact of volatility and removes the stress of trying to time the market." data-ko="한 번에 모두 투자하는 대신, 주기적으로(매주 또는 매월) 일정 금액을 매수하세요. 분할 매수는 변동성 영향을 줄이고 시장 타이밍을 맞추려는 스트레스를 없애줍니다.">Instead of investing everything at once, buy a fixed dollar amount at regular intervals (weekly or monthly). DCA reduces the impact of volatility and removes the stress of trying to time the market.</span>
+                </div>
+            </li>
+            <li>
+                <div class="step-content">
+                    <strong data-en="Secure your assets in a wallet" data-ko="지갑에 자산 안전하게 보관">Secure your assets in a wallet</strong>
+                    <span data-en="For larger holdings, consider moving your crypto off the exchange into a hardware wallet (Ledger, Trezor). The rule in crypto: 'not your keys, not your coins.' Exchanges can be hacked or go bankrupt." data-ko="큰 금액의 보유분은 하드웨어 지갑(Ledger, Trezor)으로 이동하는 것을 고려하세요. 암호화폐의 원칙: '키를 갖지 않으면 코인도 없다.' 거래소는 해킹되거나 파산할 수 있습니다.">For larger holdings, consider moving your crypto off the exchange into a hardware wallet (Ledger, Trezor). The rule in crypto: 'not your keys, not your coins.' Exchanges can be hacked or go bankrupt.</span>
+                </div>
+            </li>
+        </ol>
+
+        <!-- Section 6 -->
+        <h2 id="risk" data-en="6. Risk Management" data-ko="6. 리스크 관리">6. Risk Management</h2>
+        <p data-en="Cryptocurrency investing carries significant risk. Markets can drop 50–80% in a bear market, and individual coins can lose nearly all of their value. Understanding and managing risk is the most important skill a crypto investor can develop." data-ko="암호화폐 투자에는 상당한 리스크가 따릅니다. 시장은 약세장에서 50~80% 하락할 수 있으며, 개별 코인은 거의 모든 가치를 잃을 수도 있습니다. 리스크를 이해하고 관리하는 것이 암호화폐 투자자가 키울 수 있는 가장 중요한 능력입니다.">Cryptocurrency investing carries significant risk. Markets can drop 50–80% in a bear market, and individual coins can lose nearly all of their value. Understanding and managing risk is the most important skill a crypto investor can develop.</p>
+
+        <h3 data-en="Core Risk Management Rules" data-ko="핵심 리스크 관리 원칙">Core Risk Management Rules</h3>
+        <ul>
+            <li data-en="Only invest what you can afford to lose completely — crypto is high-risk" data-ko="전액 손실되어도 감당 가능한 금액만 투자 — 암호화폐는 고위험 자산">Only invest what you can afford to lose completely — crypto is high-risk</li>
+            <li data-en="Diversify across multiple assets — don't put everything into one coin" data-ko="여러 자산에 분산 투자 — 하나의 코인에 모두 투자하지 마세요">Diversify across multiple assets — don't put everything into one coin</li>
+            <li data-en="Avoid using leverage unless you fully understand how it works" data-ko="레버리지는 완전히 이해하기 전까진 사용하지 마세요">Avoid using leverage unless you fully understand how it works</li>
+            <li data-en="Set a stop-loss level in advance — decide your exit point before you enter" data-ko="미리 손절 수준을 설정 — 진입 전에 출구를 결정하세요">Set a stop-loss level in advance — decide your exit point before you enter</li>
+            <li data-en="Never chase a coin that has already pumped 5–10x quickly" data-ko="이미 5~10배 급등한 코인을 FOMO로 추격하지 마세요">Never chase a coin that has already pumped 5–10x quickly</li>
+            <li data-en="Keep some allocation in stablecoins or cash to buy dips" data-ko="일부를 스테이블코인이나 현금으로 보유해 하락 시 매수 여력 확보">Keep some allocation in stablecoins or cash to buy dips</li>
+        </ul>
+
+        <div class="warning-box">
+            <p data-en="⚠️ <strong>Important:</strong> The information on this site is for educational purposes only and does not constitute financial advice. Cryptocurrency investments are highly volatile and speculative. Always do your own research (DYOR) and consult a qualified financial advisor before making investment decisions." data-ko="⚠️ <strong>중요:</strong> 이 사이트의 정보는 교육 목적으로만 제공되며 금융 조언을 구성하지 않습니다. 암호화폐 투자는 매우 변동성이 높고 투기적입니다. 투자 결정을 내리기 전에 항상 스스로 조사(DYOR)하고 자격을 갖춘 금융 전문가와 상담하세요.">⚠️ <strong>Important:</strong> The information on this site is for educational purposes only and does not constitute financial advice. Cryptocurrency investments are highly volatile and speculative. Always do your own research (DYOR) and consult a qualified financial advisor before making investment decisions.</p>
+        </div>
+
+        <!-- Section 7 -->
+        <h2 id="glossary" data-en="7. Glossary of Key Terms" data-ko="7. 핵심 용어 사전">7. Glossary of Key Terms</h2>
+        <p data-en="New to crypto? Here are the terms you'll encounter most often." data-ko="암호화폐가 처음이신가요? 가장 자주 마주치는 용어들을 정리했습니다.">New to crypto? Here are the terms you'll encounter most often.</p>
+
+        <div class="glossary-grid">
+            <div class="glossary-item">
+                <div class="term">HODL</div>
+                <div class="def" data-en="Originally a typo of 'HOLD.' It now means holding onto your crypto through market volatility rather than selling in panic." data-ko="'HOLD'의 오타에서 유래. 이제는 공황 매도 대신 시장 변동성을 견디며 보유하는 것을 뜻합니다.">Originally a typo of 'HOLD.' It now means holding onto your crypto through market volatility rather than selling in panic.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">FOMO</div>
+                <div class="def" data-en="Fear Of Missing Out. The emotion that drives investors to buy a coin after it has already risen sharply, often leading to losses." data-ko="놓칠 것 같은 두려움(Fear Of Missing Out). 이미 급등한 코인을 충동적으로 매수하게 만드는 감정으로, 종종 손실로 이어집니다.">Fear Of Missing Out. The emotion that drives investors to buy a coin after it has already risen sharply, often leading to losses.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">DYOR</div>
+                <div class="def" data-en="Do Your Own Research. A reminder to verify information independently rather than acting on tips from others." data-ko="스스로 조사하라(Do Your Own Research). 남의 팁에 의존하지 말고 직접 정보를 검증하라는 당부입니다.">Do Your Own Research. A reminder to verify information independently rather than acting on tips from others.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Market Cap</div>
+                <div class="def" data-en="Total market value of a cryptocurrency. Calculated as: current price × total circulating supply. A key indicator of a coin's relative size." data-ko="암호화폐의 총 시장 가치. 현재 가격 × 유통 공급량으로 계산됩니다. 코인의 상대적 규모를 나타내는 주요 지표입니다.">Total market value of a cryptocurrency. Calculated as: current price × total circulating supply. A key indicator of a coin's relative size.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Altcoin</div>
+                <div class="def" data-en="Any cryptocurrency other than Bitcoin. 'Alt' means alternative. Ethereum, Solana, and XRP are all altcoins." data-ko="비트코인 이외의 모든 암호화폐. 'Alt'는 대안(alternative)을 뜻합니다. 이더리움, 솔라나, XRP 모두 알트코인입니다.">Any cryptocurrency other than Bitcoin. 'Alt' means alternative. Ethereum, Solana, and XRP are all altcoins.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">DeFi</div>
+                <div class="def" data-en="Decentralized Finance. Financial services (lending, borrowing, trading) built on blockchain without banks or intermediaries." data-ko="탈중앙화 금융(Decentralized Finance). 은행이나 중개자 없이 블록체인 위에 구축된 금융 서비스(대출, 차입, 거래)입니다.">Decentralized Finance. Financial services (lending, borrowing, trading) built on blockchain without banks or intermediaries.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Wallet</div>
+                <div class="def" data-en="Software or hardware that stores your private keys, giving you access to your crypto. Hot wallets are online; cold wallets are offline (more secure)." data-ko="개인 키를 저장해 암호화폐에 접근할 수 있게 해주는 소프트웨어 또는 하드웨어. 핫 월렛은 온라인, 콜드 월렛은 오프라인(더 안전)입니다.">Software or hardware that stores your private keys, giving you access to your crypto. Hot wallets are online; cold wallets are offline (more secure).</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Bull / Bear Market</div>
+                <div class="def" data-en="A bull market is a rising market (prices going up). A bear market is a falling market (prices going down, typically 20%+ from recent highs)." data-ko="불마켓은 상승 시장(가격 상승), 베어마켓은 하락 시장(최근 고점 대비 보통 20% 이상 하락)입니다.">A bull market is a rising market (prices going up). A bear market is a falling market (prices going down, typically 20%+ from recent highs).</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Gas Fee</div>
+                <div class="def" data-en="A fee paid to compensate blockchain validators for processing transactions. On Ethereum, gas fees can spike significantly during periods of high network activity." data-ko="블록체인 검증자에게 거래 처리 대가로 지불하는 수수료. 이더리움에서는 네트워크 활동이 많을 때 가스비가 크게 오를 수 있습니다.">A fee paid to compensate blockchain validators for processing transactions. On Ethereum, gas fees can spike significantly during periods of high network activity.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Halving</div>
+                <div class="def" data-en="A pre-programmed event in Bitcoin where the block reward given to miners is cut in half. Happens roughly every 4 years and historically has preceded major price increases." data-ko="비트코인에서 채굴자에게 주어지는 블록 보상이 절반으로 줄어드는 사전 프로그래밍된 이벤트. 약 4년마다 발생하며 역사적으로 큰 가격 상승에 앞서 일어났습니다.">A pre-programmed event in Bitcoin where the block reward given to miners is cut in half. Happens roughly every 4 years and historically has preceded major price increases.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Whitepaper</div>
+                <div class="def" data-en="A technical document that describes a cryptocurrency project — its purpose, technology, tokenomics, and roadmap. Reading a whitepaper is essential before investing in any project." data-ko="암호화폐 프로젝트의 목적, 기술, 토큰 경제, 로드맵을 설명하는 기술 문서. 어떤 프로젝트에 투자하기 전에 백서를 읽는 것이 필수입니다.">A technical document that describes a cryptocurrency project — its purpose, technology, tokenomics, and roadmap. Reading a whitepaper is essential before investing in any project.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Liquidity</div>
+                <div class="def" data-en="How easily a cryptocurrency can be bought or sold without affecting its price. High liquidity means tight spreads and fast execution. Low liquidity means large price impact and slippage." data-ko="암호화폐를 가격에 큰 영향 없이 얼마나 쉽게 사고팔 수 있는지를 나타냅니다. 유동성이 높으면 스프레드가 좁고 체결이 빠릅니다. 유동성이 낮으면 가격 충격과 슬리피지가 큽니다.">How easily a cryptocurrency can be bought or sold without affecting its price. High liquidity means tight spreads and fast execution. Low liquidity means large price impact and slippage.</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--border);">
+            <p style="font-size:0.88rem; color: var(--text-sub);" data-en="Ready to track the market? Head to our real-time dashboard to see live prices, the Fear & Greed Index, and more." data-ko="시장을 추적할 준비가 되셨나요? 실시간 대시보드에서 실시간 가격, 공포·탐욕 지수 등을 확인하세요.">Ready to track the market? Head to our <a href="index.html">real-time dashboard</a> to see live prices, the Fear & Greed Index, and more.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Crypto Intelligence Platform &nbsp;|&nbsp;
+        <a href="guide.html">Guide</a> &nbsp;|&nbsp;
+        <a href="about.html">About</a> &nbsp;|&nbsp;
+        <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="disclaimer.html">Disclaimer</a></p>
+        <p style="margin-top:10px;font-size:0.75rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6;opacity:0.8" data-en="The information provided on this site is for informational purposes only and does not constitute financial advice. Cryptocurrency investments carry significant risk." data-ko="이 사이트에서 제공하는 정보는 정보 제공 목적으로만 사용되며 금융 조언을 구성하지 않습니다. 암호화폐 투자에는 상당한 위험이 따릅니다.">The information provided on this site is for informational purposes only and does not constitute financial advice. Cryptocurrency investments carry significant risk.</p>
+    </footer>
+
+    <script>
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyLang() {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = currentLang === 'ko' ? el.dataset.ko : el.dataset.en;
+                if (text) el.innerHTML = text;
+            });
+            document.getElementById('lang-toggle').textContent = currentLang === 'ko' ? 'English' : '한국어';
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            localStorage.setItem('lang', currentLang);
+            applyLang();
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-toggle').textContent = 'Dark';
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-toggle').textContent = isLight ? 'Dark' : 'Light';
+        }
+
+        applyLang();
+    </script>
+</body>
+</html>
