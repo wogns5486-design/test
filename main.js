@@ -876,35 +876,6 @@ function sendSuggestion(btn) {
     sendChatMessage(btn.textContent);
 }
 
-// ── 5. AI Daily Report ─────────────────────────────────
-async function fetchAIReport() {
-    const contentEl = document.getElementById('report-content');
-    const dateEl = document.getElementById('report-date');
-    
-    try {
-        // 현재 언어 정보를 파라미터로 전달
-        const res = await fetch(`/api/report?lang=${currentLang}`);
-        const data = await res.json();
-        
-        if (data.error) throw new Error(data.error);
-        
-        dateEl.textContent = data.date;
-        
-        // Simple Markdown to HTML converter
-        let html = data.report
-            .replace(/\n/g, '<br>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/### (.*?)(<br>|$)/g, '<h3>$1</h3>')
-            .replace(/## (.*?)(<br>|$)/g, '<h2>$1</h2>')
-            .replace(/# (.*?)(<br>|$)/g, '<h1>$1</h1>');
-            
-        contentEl.innerHTML = html;
-        contentEl.classList.remove('loading-report');
-    } catch (err) {
-        contentEl.innerHTML = `<p style="color:var(--down)">${currentLang === 'ko' ? '리포트를 불러오는 중 오류가 발생했습니다' : 'Error loading report'}: ${err.message}</p>`;
-    }
-}
 
 // Init
 if (localStorage.getItem('theme') === 'light') body.classList.add('light-mode');
@@ -913,7 +884,6 @@ fetchNews();
 fetchFearAndGreed();
 fetchGlobalStats();
 fetchCryptos();
-fetchAIReport(); // 리포트 호출 추가
 setInterval(fetchCryptos, 60000);
 setInterval(fetchGlobalStats, 60000);
 setInterval(fetchNews, 300000);
