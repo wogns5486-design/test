@@ -55,7 +55,7 @@ export async function onRequestGet(context) {
 5. End with "⚡ Provided by Crypto Intelligence AI Agent".`;
         }
 
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${env.GEMINI_API_KEY}`;
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${env.GEMINI_API_KEY}`;
         
         const aiRes = await fetch(geminiUrl, {
             method: "POST",
@@ -67,6 +67,13 @@ export async function onRequestGet(context) {
         });
 
         const aiData = await aiRes.json();
+
+        // Gemini API 에러 확인
+        if (!aiRes.ok || aiData.error) {
+            const errMsg = aiData.error?.message || `HTTP ${aiRes.status}`;
+            throw new Error(`Gemini API error: ${errMsg}`);
+        }
+
         const reportText = aiData.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate report.";
 
         return new Response(JSON.stringify({
