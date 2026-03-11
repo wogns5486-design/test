@@ -462,6 +462,22 @@ body.light-mode #intro-title { color: #0d1526; }
     box-shadow: 0 0 16px rgba(31,111,235,0.35);
 }
 
+#category-desc-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    animation: fadeIn 0.2s ease;
+}
+#category-desc-icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+#category-desc-title { font-size: 0.85rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+#category-desc-text { font-size: 0.83rem; color: var(--text-sub); line-height: 1.7; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
 /* ══════════════════════════════════════════
    COIN TABLE
 ══════════════════════════════════════════ */

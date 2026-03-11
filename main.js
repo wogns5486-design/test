@@ -636,6 +636,7 @@ function updateLanguage() {
     fetchGlobalStats();
     renderCryptos(allCryptos);
     renderPortfolio();
+    updateCategoryDesc(currentCategory);
 }
 
 async function fetchFearAndGreed() {
@@ -769,6 +770,65 @@ currencyToggle.addEventListener('click', () => {
 
 searchInput.addEventListener('input', () => { currentPage = 1; renderCryptos(allCryptos); });
 
+const categoryDescriptions = {
+    en: {
+        all: null,
+        'layer-1': {
+            icon: '⛓️',
+            title: 'Layer 1 Blockchains',
+            text: 'Layer 1 refers to the base blockchain itself — the foundational network where all transactions are recorded and validated. Examples include Bitcoin, Ethereum, and Solana. These blockchains are the settlement layer that everything else is built upon. Key metrics to evaluate: transaction speed (TPS), finality time, decentralization, and security track record.'
+        },
+        ai: {
+            icon: '🤖',
+            title: 'AI & Compute Tokens',
+            text: 'AI tokens power blockchain projects focused on artificial intelligence, machine learning infrastructure, and decentralized compute networks. These include projects that monetize GPU resources (Render, Akash), train or run AI models on-chain (Bittensor, Fetch.ai), and build decentralized data marketplaces (The Graph, Ocean Protocol). This sector has seen strong growth as AI adoption accelerates globally.'
+        },
+        meme: {
+            icon: '🐸',
+            title: 'Meme Coins',
+            text: 'Meme coins are cryptocurrencies that originated from internet culture, jokes, or viral trends. While Dogecoin started as a parody of Bitcoin in 2013, some meme coins have grown into multi-billion dollar assets with real communities. Meme coins are highly speculative and volatile — prices can rise or fall dramatically within hours based on social media sentiment and influencer activity. Only invest what you can afford to lose entirely.'
+        },
+        stablecoin: {
+            icon: '🏦',
+            title: 'Stablecoins',
+            text: 'Stablecoins are cryptocurrencies designed to maintain a stable value, usually pegged 1:1 to the US dollar. They are essential infrastructure in the crypto ecosystem, used for trading, lending, earning yield, and transferring value without exposure to price volatility. Major stablecoins include USDT (Tether), USDC (Circle), and DAI (MakerDAO). When markets are uncertain, many investors move into stablecoins to preserve capital.'
+        }
+    },
+    ko: {
+        all: null,
+        'layer-1': {
+            icon: '⛓️',
+            title: '레이어 1 블록체인',
+            text: '레이어 1은 모든 거래가 기록되고 검증되는 기반 블록체인 네트워크를 말합니다. 비트코인, 이더리움, 솔라나가 대표적입니다. 모든 것이 그 위에 구축되는 정산 레이어입니다. 평가 시 주요 지표: 초당 거래량(TPS), 최종성 시간, 탈중앙화 수준, 보안 이력.'
+        },
+        ai: {
+            icon: '🤖',
+            title: 'AI & 컴퓨팅 토큰',
+            text: 'AI 토큰은 인공지능, 머신러닝 인프라, 탈중앙화 컴퓨팅 네트워크에 초점을 맞춘 블록체인 프로젝트를 구동합니다. GPU 자원 수익화(Render, Akash), 온체인 AI 모델 학습 및 실행(Bittensor, Fetch.ai), 탈중앙화 데이터 마켓플레이스(The Graph) 등이 포함됩니다. 전 세계적으로 AI 도입이 가속화되면서 이 섹터는 강한 성장세를 보이고 있습니다.'
+        },
+        meme: {
+            icon: '🐸',
+            title: '밈 코인',
+            text: '밈 코인은 인터넷 문화, 농담, 바이럴 트렌드에서 시작된 암호화폐입니다. 2013년 비트코인 패러디로 시작한 도지코인처럼 일부는 수십억 달러 규모의 커뮤니티로 성장했습니다. 밈 코인은 매우 투기적이고 변동성이 높아 소셜 미디어 심리와 인플루언서 활동에 따라 몇 시간 안에 큰 폭으로 등락할 수 있습니다. 전액 손실을 감당할 수 있는 금액만 투자하세요.'
+        },
+        stablecoin: {
+            icon: '🏦',
+            title: '스테이블코인',
+            text: '스테이블코인은 보통 미국 달러에 1:1로 고정된 안정적인 가치를 유지하도록 설계된 암호화폐입니다. 거래, 대출, 수익 창출, 가격 변동성 없는 자산 이전을 위해 암호화폐 생태계의 필수 인프라로 활용됩니다. 주요 스테이블코인으로는 USDT(테더), USDC(서클), DAI(메이커다오)가 있습니다. 시장이 불확실할 때 많은 투자자들이 자산 보존을 위해 스테이블코인으로 이동합니다.'
+        }
+    }
+};
+
+function updateCategoryDesc(category) {
+    const box = document.getElementById('category-desc-box');
+    const desc = categoryDescriptions[currentLang][category];
+    if (!desc) { box.style.display = 'none'; return; }
+    document.getElementById('category-desc-icon').textContent = desc.icon;
+    document.getElementById('category-desc-title').textContent = desc.title;
+    document.getElementById('category-desc-text').textContent = desc.text;
+    box.style.display = 'flex';
+}
+
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelector('.filter-btn.active').classList.remove('active');
@@ -776,6 +836,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         currentCategory = e.target.dataset.category;
         currentPage = 1;
         renderCryptos(allCryptos);
+        updateCategoryDesc(currentCategory);
     });
 });
 
