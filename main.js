@@ -12,6 +12,7 @@ let currentCurrency = localStorage.getItem('currency') || 'usd';
 let currentCategory = 'all';
 let currentPage = 1;
 const COINS_PER_PAGE = 20;
+let lastFngValue = null;
 
 const translations = {
     en: {
@@ -637,13 +638,64 @@ function updateLanguage() {
     renderCryptos(allCryptos);
     renderPortfolio();
     updateCategoryDesc(currentCategory);
+    if (lastFngValue !== null) updateFngExplain(lastFngValue);
+}
+
+const fngExplainData = {
+    en: [
+        { max: 24, badge: 'Extreme Fear', title: '😱 Extreme Fear — Market is in Panic',
+          text: 'The market is gripped by fear. Investors are selling aggressively and sentiment is at its most pessimistic. Extreme fear often appears near market bottoms, but can persist for extended periods in a bear market. Historically, this zone has offered the best long-term entry points — but catching a falling knife carries real risk.',
+          tip: '💡 Investor insight: Warren Buffett\'s principle — "Be greedy when others are fearful" — applies here. However, extreme fear can intensify before it improves. Dollar-cost averaging rather than lump-sum buying is generally advisable.' },
+        { max: 44, badge: 'Fear', title: '😰 Fear — Negative Sentiment Dominates',
+          text: 'Market participants are cautious and selling pressure remains elevated. Prices may continue to fall, but the pace of decline is typically slower than in extreme fear. Many experienced investors begin watching for accumulation opportunities in this zone.',
+          tip: '💡 Investor insight: Fear zones can present value opportunities, but patience is key. Monitor Bitcoin dominance — if BTC dominance is rising alongside fear, altcoins may face more downside pressure.' },
+        { max: 55, badge: 'Neutral', title: '😐 Neutral — Market is Balanced',
+          text: 'The market is in equilibrium between buyers and sellers. Neither panic nor euphoria is driving price action. Neutral readings often precede a directional move — the market is gathering momentum before its next significant trend.',
+          tip: '💡 Investor insight: Neutral is a good time to review your portfolio allocation and ensure you\'re positioned for either outcome. Avoid making large directional bets based on short-term signals alone.' },
+        { max: 74, badge: 'Greed', title: '🤑 Greed — Bulls Are in Control',
+          text: 'Positive sentiment is pushing prices higher. Investors are buying confidently and market momentum is strong. Greed phases often persist longer than expected, but they also carry elevated risk as late buyers enter at increasingly high prices.',
+          tip: '💡 Investor insight: Greed is not necessarily a sell signal, but it warrants caution. Consider taking partial profits on positions that have significantly appreciated. Avoid going all-in at this stage.' },
+        { max: 100, badge: 'Extreme Greed', title: '🚀 Extreme Greed — Market is Overheated',
+          text: 'The market is running on euphoria and FOMO (fear of missing out). Nearly everyone is bullish, media coverage is intense, and new retail investors are rushing in. Historically, extreme greed readings have preceded notable market corrections — sometimes sharply.',
+          tip: '💡 Investor insight: "Be fearful when others are greedy." Extreme greed is a classic contrarian warning sign. This is typically not the time to make large new purchases. Focus on risk management and consider reducing exposure.' }
+    ],
+    ko: [
+        { max: 24, badge: '극도의 공포', title: '😱 극도의 공포 — 시장이 패닉 상태',
+          text: '시장이 공포에 휩싸여 있습니다. 투자자들이 공격적으로 매도하며 심리가 최악의 비관론에 빠진 상태입니다. 극도의 공포는 시장 바닥 근처에서 자주 나타나지만, 하락장에서는 장기간 지속될 수도 있습니다. 역사적으로 이 구간은 장기 최적 매수 시점을 제공했지만, 하락하는 칼날을 잡는 것은 실질적인 위험을 수반합니다.',
+          tip: '💡 투자자 인사이트: 워렌 버핏의 원칙 — "남들이 두려워할 때 탐욕스러워져라" — 가 적용됩니다. 그러나 극도의 공포는 회복 전에 더 심해질 수 있습니다. 일괄 매수보다 분할 매수(DCA)가 일반적으로 권장됩니다.' },
+        { max: 44, badge: '공포', title: '😰 공포 — 부정적 심리가 지배',
+          text: '시장 참여자들이 신중하게 움직이며 매도 압력이 여전히 높습니다. 가격이 계속 하락할 수 있지만 속도는 극도의 공포보다 느린 편입니다. 경험 많은 투자자들이 이 구간에서 분할 매수 기회를 탐색하기 시작합니다.',
+          tip: '💡 투자자 인사이트: 공포 구간은 가치 매수 기회를 제공하지만 인내가 중요합니다. 비트코인 점유율을 모니터링하세요 — BTC 점유율이 공포와 함께 상승하면 알트코인이 더 큰 하락 압력을 받을 수 있습니다.' },
+        { max: 55, badge: '중립', title: '😐 중립 — 시장이 균형 상태',
+          text: '시장이 매수자와 매도자 사이에서 균형을 이루고 있습니다. 공황도 열광도 가격을 주도하지 않습니다. 중립 수치는 다음 방향성 있는 움직임 전 모멘텀을 쌓는 단계인 경우가 많습니다.',
+          tip: '💡 투자자 인사이트: 중립은 포트폴리오 배분을 점검하고 양방향 시나리오에 대비하기 좋은 시기입니다. 단기 신호만으로 큰 방향성 베팅은 피하세요.' },
+        { max: 74, badge: '탐욕', title: '🤑 탐욕 — 강세장이 주도',
+          text: '긍정적 심리가 가격을 밀어올리고 있습니다. 투자자들이 자신감 있게 매수하며 모멘텀이 강합니다. 탐욕 국면은 예상보다 오래 지속되는 경향이 있지만, 후발 매수자들이 점점 높은 가격에 진입하면서 위험도 높아집니다.',
+          tip: '💡 투자자 인사이트: 탐욕이 반드시 매도 신호는 아니지만 주의가 필요합니다. 크게 오른 포지션의 일부 수익 실현을 고려하세요. 이 단계에서 전량 매수는 피하세요.' },
+        { max: 100, badge: '극도의 탐욕', title: '🚀 극도의 탐욕 — 시장 과열',
+          text: '시장이 열광과 FOMO(놓칠 것 같은 두려움)로 달아올랐습니다. 거의 모든 사람이 강세를 보이고, 미디어 노출이 폭증하며, 신규 개인 투자자들이 몰려들고 있습니다. 역사적으로 극도의 탐욕 수치 이후 상당한 조정이 뒤따른 경우가 많았습니다.',
+          tip: '💡 투자자 인사이트: "남들이 탐욕스러울 때 두려워하라." 극도의 탐욕은 전형적인 역발상 경고 신호입니다. 일반적으로 대규모 신규 매수를 할 시기가 아닙니다. 리스크 관리에 집중하고 비중 축소를 고려하세요.' }
+    ]
+};
+
+function updateFngExplain(value) {
+    const lang = currentLang;
+    const data = fngExplainData[lang];
+    const entry = data.find(d => value <= d.max) || data[data.length - 1];
+    document.getElementById('fng-explain-badge').textContent = entry.badge;
+    document.getElementById('fng-explain-title').textContent = entry.title;
+    document.getElementById('fng-explain-text').textContent = entry.text;
+    document.getElementById('fng-explain-tip').textContent = entry.tip;
+    // Move needle
+    const pct = Math.min(Math.max(value, 0), 100);
+    document.getElementById('fng-needle').style.left = pct + '%';
 }
 
 async function fetchFearAndGreed() {
     try {
         const res = await fetch('https://api.alternative.me/fng/');
         const data = await res.json();
-        const value = data.data[0].value;
+        const value = parseInt(data.data[0].value);
         const classification = data.data[0].value_classification;
         const indexEl = document.getElementById('fear-greed-index');
         indexEl.textContent = value;
@@ -651,6 +703,8 @@ async function fetchFearAndGreed() {
         if (value > 70) indexEl.style.color = 'var(--up)';
         else if (value < 30) indexEl.style.color = 'var(--down)';
         else indexEl.style.color = 'var(--accent-2)';
+        lastFngValue = value;
+        updateFngExplain(value);
     } catch (err) {}
 }
 

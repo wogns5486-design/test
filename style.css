@@ -347,6 +347,108 @@ body.light-mode #intro-title { color: #0d1526; }
     letter-spacing: 0.02em;
 }
 
+/* ── Fear & Greed Explain Section ── */
+#fng-explain-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px 24px;
+    position: relative;
+    z-index: 1;
+}
+#fng-explain-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px 28px;
+}
+#fng-explain-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#fng-explain-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--accent-glow);
+    color: var(--accent-2);
+    white-space: nowrap;
+}
+#fng-explain-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+}
+#fng-explain-text {
+    font-size: 0.88rem;
+    color: var(--text-sub);
+    line-height: 1.75;
+    margin: 0 0 18px;
+}
+#fng-explain-tip {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    line-height: 1.7;
+    margin: 12px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    opacity: 0.85;
+}
+
+/* Scale bar */
+#fng-scale { margin: 4px 0 0; }
+.fng-scale-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    gap: 2px;
+}
+.fng-scale-seg {
+    flex: 1;
+    border-radius: 3px;
+    position: relative;
+    cursor: default;
+}
+.seg-ef { background: #f6465d; }
+.seg-f  { background: #ff8c00; }
+.seg-n  { background: #c8a000; }
+.seg-g  { background: #26a17b; }
+.seg-eg { background: #0ecb81; }
+.fng-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+}
+#fng-needle-wrap {
+    position: relative;
+    height: 10px;
+    margin-top: -16px;
+}
+#fng-needle {
+    position: absolute;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent-2);
+    transform: translateX(-50%);
+    box-shadow: 0 0 6px rgba(88,166,255,0.5);
+    transition: left 0.8s cubic-bezier(0.34,1.56,0.64,1);
+}
+@media (max-width: 768px) {
+    #fng-explain-section { padding: 0 16px 20px; }
+    #fng-explain-card { padding: 18px 16px; }
+}
+
 .search-container { flex: 1; max-width: 580px; position: relative; }
 #crypto-search {
     width: 100%;
